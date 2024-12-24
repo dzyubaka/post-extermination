@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Map;
+import java.util.Random;
+
 public class AreaFragment extends Fragment {
 
     private final Tile tile;
@@ -29,12 +32,19 @@ public class AreaFragment extends Fragment {
         TextView searchesLeft = view.findViewById(R.id.searchesLeft);
         searchesLeft.setText(tile.searchesLeft + " searches left");
         ItemAdapter adapter = new ItemAdapter(tile.items, true, tile, player);
+        Random random = new Random();
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
                 tile.searchesLeft--;
                 searchesLeft.setText(tile.searchesLeft + " searches left");
-                tile.items.add(Item.BEANS);
-                adapter.notifyItemInserted(tile.items.size() - 1);
+
+                for (Map.Entry<Item, Integer> entry : tile.loot.entrySet()) {
+                    if (random.nextInt(100) < entry.getValue()) {
+                        tile.items.add(entry.getKey());
+                        adapter.notifyItemInserted(tile.items.size() - 1);
+                    }
+                }
+
             } else {
                 Toast.makeText(v.getContext(), "There are no any items left in this place.", Toast.LENGTH_SHORT).show();
             }

@@ -17,7 +17,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +37,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Random random = new Random();
+
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (random.nextInt(10) == 0) {
+                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of(Item.BEANS, 10, Item.WATER, 20, Item.CHOCOLATE, 5));
+                } else {
+                    tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0, null);
+                }
+            }
+        }
 
         fragmentManager.beginTransaction()
                 .add(R.id.fragmentContainer, new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player))
@@ -61,18 +75,6 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
             return true;
         });
-
-        Random random = new Random();
-
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if (random.nextInt(10) == 0) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3);
-                } else {
-                    tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0);
-                }
-            }
-        }
     }
 
     public void updateIndicators() {
