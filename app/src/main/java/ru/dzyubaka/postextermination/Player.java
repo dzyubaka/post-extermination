@@ -7,15 +7,51 @@ import java.util.List;
 
 public class Player {
 
-    int sanity = 100;
-    int hunger = 10;
-    int thirst = 10;
-    int energy = 100;
-    int toxins = 0;
-    int pain = 0;
+    private int sanity = 100;
+    private int hunger = 10;
+    private int thirst = 10;
+    private int energy = 100;
+    private int toxins = 0;
+    private int pain = 0;
 
     final Point position = new Point(24, 24);
-    final ArrayList<Item> items = new ArrayList<>(List.of(Item.BEANS, Item.CHOCOLATE));
+    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.CANNED_BEANS, Item.CHOCOLATE, Item.MULTITOOL));
+
+    public int getSanity() {
+        return sanity;
+    }
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public int getThirst() {
+        return thirst;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public int getToxins() {
+        return toxins;
+    }
+
+    public int getPain() {
+        return pain;
+    }
+
+    public void addHunger(int hunger) {
+        this.hunger = Math.min(Math.max(this.hunger + hunger, 0), 100);
+    }
+
+    public void addThirst(int thirst) {
+        this.thirst = Math.min(Math.max(this.thirst + thirst, 0), 100);
+    }
+
+    public void addToxins(int toxins) {
+        this.toxins = Math.min(Math.max(this.toxins + toxins, 0), 100);
+    }
 
     public void action() {
         hunger++;
@@ -41,4 +77,5 @@ public class Player {
         toxins = Math.min(Math.max(toxins, 0), 100);
         pain = Math.min(Math.max(pain, 0), 100);
     }
+
 }

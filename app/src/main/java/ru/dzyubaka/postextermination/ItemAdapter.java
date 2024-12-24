@@ -49,7 +49,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     int index = holder.getAdapterPosition();
                     items.remove(index);
                     notifyItemRemoved(index);
-                    player.items.add(item);
+                    player.inventory.add(item);
                 });
             } else {
                 builder.setNegativeButton("Drop", (dialog, which) -> {
@@ -64,8 +64,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                         int index = holder.getAdapterPosition();
                         items.remove(index);
                         notifyItemRemoved(index);
-                        player.hunger += food.hunger;
-                        player.thirst += food.thirst;
+                        player.addHunger(food.hunger);
+                        player.addThirst(food.thirst);
+                        player.addToxins(food.toxins);
                         ((MainActivity) view.getContext()).updateIndicators();
                     });
                 }

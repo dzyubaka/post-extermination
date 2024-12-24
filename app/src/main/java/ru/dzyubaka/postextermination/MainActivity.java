@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (random.nextInt(10) == 0) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of(Item.BEANS, 10, Item.WATER, 20, Item.CHOCOLATE, 5));
+                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of(Item.CANNED_BEANS, 10, Item.WATER, 20, Item.CHOCOLATE, 5, Item.MULTITOOL, 3));
                 } else {
                     tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0, null);
                 }
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player))
+                .add(R.id.fragmentContainer, new InventoryFragment(player.inventory, tiles[player.position.y][player.position.x], player))
                 .commit();
 
         ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
@@ -57,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
 
             if (id == R.id.inventory) {
-                fragment = new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player);
+                fragment = new InventoryFragment(player.inventory, tiles[player.position.y][player.position.x], player);
             } else if (id == R.id.map) {
                 fragment = new MapFragment(player, tiles);
+            } else if (id == R.id.craft) {
+                fragment = new CraftFragment(player.inventory);
             } else if (id == R.id.area) {
                 fragment = new AreaFragment(player, tiles[player.position.y][player.position.x]);
             } else {
@@ -76,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateIndicators() {
-        ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(player.sanity);
-        ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(player.hunger);
-        ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(player.thirst);
-        ((LinearProgressIndicator) findViewById(R.id.energy)).setProgress(player.energy);
-        ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(player.toxins);
-        ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(player.pain);
+        ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(player.getSanity());
+        ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(player.getHunger());
+        ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(player.getThirst());
+        ((LinearProgressIndicator) findViewById(R.id.energy)).setProgress(player.getEnergy());
+        ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(player.getToxins());
+        ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(player.getPain());
     }
 
 }
