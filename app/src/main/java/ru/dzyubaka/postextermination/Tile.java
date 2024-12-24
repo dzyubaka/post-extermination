@@ -1,12 +1,14 @@
 package ru.dzyubaka.postextermination;
 
-public class Item {
+public class Tile {
 
     String name;
     String description;
     int drawable;
+    int searchesLeft;
+    Item[] items;
 
-    public Item(String name, String description, int drawable) {
+    public Tile(String name, String description, int drawable) {
         this.name = name;
         this.description = description;
         this.drawable = drawable;

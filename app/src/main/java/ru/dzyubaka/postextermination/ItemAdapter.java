@@ -9,40 +9,44 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private ArrayList<Item> items = new ArrayList<>(List.of(
-            new Item("Pea", "Tin can of pea.", R.drawable.pea),
-            new Food("Chocolate", "Dark 70% chocolate plate.", R.drawable.chocolate, -10, 0)
-    ));
+    private final ArrayList<Item> items;
+
+    public ItemAdapter(ArrayList<Item> items) {
+        this.items = items;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ImageView imageView = new ImageView(parent.getContext());
-        imageView.setPadding(0, 32, 0, 0);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.height = 200;
+        imageView.setLayoutParams(params);
         return new ViewHolder(imageView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Item item = items.get(position);
-        ((ImageView) holder.itemView).setImageResource(item.sprite);
+        ((ImageView) holder.itemView).setImageResource(item.drawable);
         holder.itemView.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
                     .setTitle(item.name)
                     .setMessage(item.description)
                     .setNegativeButton("Drop", (dialog, which) -> {
-                        items.remove(position);
-                        notifyItemRemoved(position);
+                        int index = items.indexOf(item);
+                        items.remove(index);
+                        notifyItemRemoved(index);
                     })
                     .setNeutralButton("Close", null);
             if (item instanceof Food food) {
                 builder.setPositiveButton("Eat", (dialog, which) -> {
-                    items.remove(position);
-                    notifyItemRemoved(position);
+                    int index = items.indexOf(item);
+                    items.remove(index);
+                    notifyItemRemoved(index);
                     MainActivity.instance.hunger += food.hunger;
                     MainActivity.instance.thirst += food.thirst;
                     MainActivity.instance.updateIndicators();
