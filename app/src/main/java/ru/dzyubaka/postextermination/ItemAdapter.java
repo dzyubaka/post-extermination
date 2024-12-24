@@ -46,14 +46,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             if (onFloor) {
                 builder.setPositiveButton("Take", (dialog, which) -> {
-                    int index = items.indexOf(item);
+                    int index = holder.getAdapterPosition();
                     items.remove(index);
                     notifyItemRemoved(index);
                     player.items.add(item);
                 });
             } else {
                 builder.setNegativeButton("Drop", (dialog, which) -> {
-                    int index = items.indexOf(item);
+                    int index = holder.getAdapterPosition();
                     items.remove(index);
                     notifyItemRemoved(index);
                     tile.items.add(item);
@@ -61,7 +61,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
                 if (item instanceof Food food) {
                     builder.setPositiveButton("Eat", (dialog, which) -> {
-                        int index = items.indexOf(item);
+                        int index = holder.getAdapterPosition();
                         items.remove(index);
                         notifyItemRemoved(index);
                         player.hunger += food.hunger;

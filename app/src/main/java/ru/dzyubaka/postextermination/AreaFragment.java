@@ -17,12 +17,12 @@ import java.util.Random;
 
 public class AreaFragment extends Fragment {
 
-    private final Tile tile;
     private final Player player;
+    private final Tile tile;
 
-    public AreaFragment(Tile tile, Player player) {
-        this.tile = tile;
+    public AreaFragment(Player player, Tile tile) {
         this.player = player;
+        this.tile = tile;
     }
 
     @Override
@@ -35,6 +35,8 @@ public class AreaFragment extends Fragment {
         Random random = new Random();
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
+                player.action();
+                ((MainActivity) getContext()).updateIndicators();
                 tile.searchesLeft--;
                 searchesLeft.setText(tile.searchesLeft + " searches left");
 
@@ -46,7 +48,7 @@ public class AreaFragment extends Fragment {
                 }
 
             } else {
-                Toast.makeText(v.getContext(), "There are no any items left in this place.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "There are no items left in this place.", Toast.LENGTH_SHORT).show();
             }
         });
         RecyclerView recycler = view.findViewById(R.id.recycler);

@@ -1,6 +1,5 @@
 package ru.dzyubaka.postextermination;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -16,9 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -63,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.inventory) {
                 fragment = new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player);
             } else if (id == R.id.map) {
-                fragment = new MapFragment(tiles, player.position);
+                fragment = new MapFragment(player, tiles);
             } else if (id == R.id.area) {
-                fragment = new AreaFragment(tiles[player.position.y][player.position.x], player);
+                fragment = new AreaFragment(player, tiles[player.position.y][player.position.x]);
             } else {
                 Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
                 return false;
@@ -75,13 +71,15 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
             return true;
         });
+
+        updateIndicators();
     }
 
     public void updateIndicators() {
         ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(player.sanity);
         ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(player.hunger);
         ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(player.thirst);
-        ((LinearProgressIndicator) findViewById(R.id.sleep)).setProgress(player.sleep);
+        ((LinearProgressIndicator) findViewById(R.id.energy)).setProgress(player.energy);
         ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(player.toxins);
         ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(player.pain);
     }

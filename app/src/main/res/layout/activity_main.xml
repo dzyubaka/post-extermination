@@ -26,9 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
                 app:indicatorColor="@color/aqua"
-                app:trackThickness="19dp" />
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
@@ -45,9 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
                 app:indicatorColor="@color/orange"
-                app:trackThickness="19dp" />
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
@@ -64,9 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
                 app:indicatorColor="@color/blue"
-                app:trackThickness="19dp" />
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
@@ -75,17 +75,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sleep"
+                android:text="Energy"
                 android:textStyle="bold" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/sleep"
+                android:id="@+id/energy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
-                app:indicatorColor="@color/fuchsia"
-                app:trackThickness="19dp" />
+                app:indicatorColor="@color/yellow"
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
@@ -102,9 +102,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
                 app:indicatorColor="@color/green"
-                app:trackThickness="19dp" />
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
@@ -121,9 +121,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:progress="50"
                 app:indicatorColor="@color/maroon"
-                app:trackThickness="19dp" />
+                app:trackThickness="19dp"
+                tools:progress="50" />
 
         </TableRow>
 
