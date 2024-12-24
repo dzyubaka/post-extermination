@@ -2,12 +2,14 @@ package ru.dzyubaka.postextermination;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -20,25 +22,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    static MainActivity instance;
-
-    int sanity = 50,
-            hunger = 50,
-            thirst = 50,
-            sleep = 50,
-            toxins = 50,
-            pain = 50;
-
-    private final ArrayList<Item> items = new ArrayList<>(List.of(
-            new Item("Beans", "Tin can of beans.", R.drawable.beans),
-            new Food("Chocolate", "Milk chocolate plate.", R.drawable.chocolate, -10, 0)
-    ));
-
+    private final Player player = new Player();
     private final Tile[][] tiles = new Tile[49][49];
-    private final Point position = new Point(24, 24);
-
-    private final InventoryFragment inventoryFragment = new InventoryFragment(items);
-    private final MapFragment mapFragment = new MapFragment(tiles, position);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +35,29 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        instance = this;
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(R.id.fragment_container, inventoryFragment)
-                .add(R.id.fragment_container, mapFragment)
-                .hide(mapFragment)
+                .add(R.id.fragmentContainer, new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player))
                 .commit();
 
-        ((BottomNavigationView) findViewById(R.id.bottom_navigation)).setOnItemSelectedListener(item -> {
+        ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            if (item.getItemId() == R.id.inventory) {
-                transaction.hide(mapFragment);
-                transaction.show(inventoryFragment);
-            } else if (item.getItemId() == R.id.map) {
-                transaction.hide(inventoryFragment);
-                transaction.show(mapFragment);
+            int id = item.getItemId();
+            Fragment fragment;
+
+            if (id == R.id.inventory) {
+                fragment = new InventoryFragment(player.items, tiles[player.position.y][player.position.x], player);
+            } else if (id == R.id.map) {
+                fragment = new MapFragment(tiles, player.position);
+            } else if (id == R.id.area) {
+                fragment = new AreaFragment(tiles[player.position.y][player.position.x], player);
+            } else {
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                return false;
             }
+
+            transaction.replace(R.id.fragmentContainer, fragment);
             transaction.commit();
             return true;
         });
@@ -77,20 +67,21 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (random.nextInt(10) == 0) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house);
+                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3);
                 } else {
-                    tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland);
+                    tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0);
                 }
             }
         }
     }
 
     public void updateIndicators() {
-        ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(sanity);
-        ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(hunger);
-        ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(thirst);
-        ((LinearProgressIndicator) findViewById(R.id.sleep)).setProgress(sleep);
-        ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(toxins);
-        ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(pain);
+        ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(player.sanity);
+        ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(player.hunger);
+        ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(player.thirst);
+        ((LinearProgressIndicator) findViewById(R.id.sleep)).setProgress(player.sleep);
+        ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(player.toxins);
+        ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(player.pain);
     }
+
 }

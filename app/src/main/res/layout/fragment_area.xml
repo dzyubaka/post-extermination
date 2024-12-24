@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".AreaFragment">
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/TextAppearance.MaterialComponents.Headline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wasteland" />
+
+    <TextView
+        android:id="@+id/searchesLeft"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 searches left" />
+
+    <Button
+        android:id="@+id/search"
+        android:text="Search for items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

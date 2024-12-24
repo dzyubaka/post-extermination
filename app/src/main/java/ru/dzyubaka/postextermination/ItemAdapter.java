@@ -13,9 +13,15 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private final ArrayList<Item> items;
+    private final boolean onFloor;
+    private final Tile tile;
+    private final Player player;
 
-    public ItemAdapter(ArrayList<Item> items) {
+    public ItemAdapter(ArrayList<Item> items, boolean onFloor, Tile tile, Player player) {
         this.items = items;
+        this.onFloor = onFloor;
+        this.tile = tile;
+        this.player = player;
     }
 
     @NonNull
@@ -36,21 +42,33 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
                     .setTitle(item.name)
                     .setMessage(item.description)
-                    .setNegativeButton("Drop", (dialog, which) -> {
-                        int index = items.indexOf(item);
-                        items.remove(index);
-                        notifyItemRemoved(index);
-                    })
                     .setNeutralButton("Close", null);
-            if (item instanceof Food food) {
-                builder.setPositiveButton("Eat", (dialog, which) -> {
+
+            if (onFloor) {
+                builder.setPositiveButton("Take", (dialog, which) -> {
                     int index = items.indexOf(item);
                     items.remove(index);
                     notifyItemRemoved(index);
-                    MainActivity.instance.hunger += food.hunger;
-                    MainActivity.instance.thirst += food.thirst;
-                    MainActivity.instance.updateIndicators();
+                    player.items.add(item);
                 });
+            } else {
+                builder.setNegativeButton("Drop", (dialog, which) -> {
+                    int index = items.indexOf(item);
+                    items.remove(index);
+                    notifyItemRemoved(index);
+                    tile.items.add(item);
+                });
+
+                if (item instanceof Food food) {
+                    builder.setPositiveButton("Eat", (dialog, which) -> {
+                        int index = items.indexOf(item);
+                        items.remove(index);
+                        notifyItemRemoved(index);
+                        player.hunger += food.hunger;
+                        player.thirst += food.thirst;
+                        ((MainActivity) view.getContext()).updateIndicators();
+                    });
+                }
             }
             builder.show();
         });
