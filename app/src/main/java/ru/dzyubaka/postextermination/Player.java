@@ -15,7 +15,7 @@ public class Player {
     private int pain = 0;
 
     final Point position = new Point(24, 24);
-    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.CANNED_BEANS, Item.CHOCOLATE, Item.MULTITOOL));
+    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create("canned beans"), Item.create("chocolate"), Item.create("multitool"), Item.create("multitool")));
 
     public int getSanity() {
         return sanity;

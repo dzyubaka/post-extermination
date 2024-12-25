@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (random.nextInt(10) == 0) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of(Item.CANNED_BEANS, 10, Item.WATER, 20, Item.CHOCOLATE, 5, Item.MULTITOOL, 3));
+                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of("canned beans", 10, "water", 20, "chocolate", 5, "multitool", 3));
                 } else {
                     tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0, null);
                 }
