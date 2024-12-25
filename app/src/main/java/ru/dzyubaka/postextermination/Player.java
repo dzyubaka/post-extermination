@@ -24,6 +24,10 @@ public class Player {
         return sanity;
     }
 
+    public void addSanity(int sanity) {
+        this.sanity = Math.min(Math.max(this.sanity + sanity, 0), 100);
+    }
+
     public int getHunger() {
         return hunger;
     }
@@ -104,5 +108,4 @@ public class Player {
     public boolean canWalk() {
         return getWeight() <= maxWeight;
     }
-
 }

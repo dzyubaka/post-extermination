@@ -60,12 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (chance < 1) {
                     Map<Item.Type, Integer> loot = Map.of(
-                            Item.Type.CANNED_BEANS, 20,
-                            Item.Type.WATER, 40,
-                            Item.Type.CHOCOLATE, 10,
-                            Item.Type.APPLE, 10,
-                            Item.Type.ROTTEN_APPLE, 10,
-                            Item.Type.ENERGY_DRINK, 10
+                            Item.Type.CANNED_BEANS, 10,
+                            Item.Type.WATER, 20,
+                            Item.Type.CHOCOLATE, 5,
+                            Item.Type.APPLE, 5,
+                            Item.Type.ROTTEN_APPLE, 5,
+                            Item.Type.ENERGY_DRINK, 5,
+                            Item.Type.CHIPS, 5
                     );
                     tiles[i][j] = new Tile("Market", "Product market", R.drawable.shop, 5, loot);
                 } else if (chance < 5) {
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                             Item.Type.MULTITOOL, 1,
                             Item.Type.APPLE, 5,
                             Item.Type.ROTTEN_APPLE, 5,
-                            Item.Type.ENERGY_DRINK, 5
+                            Item.Type.ENERGY_DRINK, 3,
+                            Item.Type.CHIPS, 3
                     );
                     tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, loot);
                 } else {

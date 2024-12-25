@@ -21,8 +21,9 @@ public class Item implements Cloneable {
         prototypes.put(Type.WATER, new Food(Type.WATER, "Water", "Bottle of water.", R.drawable.water, 500, 0, -30, -10));
         prototypes.put(Type.MULTITOOL, new Tool(Type.MULTITOOL, "Multitool", "Useful knife.", R.drawable.multitool, 250, 10));
         prototypes.put(Type.APPLE, new Food(Type.APPLE, "Apple", "Fresh apple.", R.drawable.apple, 150, -15, -5, -5));
-        prototypes.put(Type.ROTTEN_APPLE, new Food(Type.ROTTEN_APPLE, "Rotten apple", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
-        prototypes.put(Type.ENERGY_DRINK, new Food(Type.ENERGY_DRINK, "Energy drink", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
+        prototypes.put(Type.ROTTEN_APPLE, new Food(Type.ROTTEN_APPLE, "Rotten apple.", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
+        prototypes.put(Type.ENERGY_DRINK, new Food(Type.ENERGY_DRINK, "Energy drink.", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
+        prototypes.put(Type.CHIPS, new Food(Type.CHIPS, "Chips", "Potato chips.", R.drawable.chips, 150, -20, 5, 0));
     }
 
     public static Item create(Type type) {
@@ -64,6 +65,7 @@ public class Item implements Cloneable {
         APPLE,
         ROTTEN_APPLE,
         ENERGY_DRINK,
+        CHIPS,
     }
 
 }

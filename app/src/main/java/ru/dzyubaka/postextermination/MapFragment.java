@@ -47,6 +47,27 @@ public class MapFragment extends Fragment {
         view.findViewById(R.id.up).setOnClickListener(v -> movePlayer(0, -1));
         view.findViewById(R.id.down).setOnClickListener(v -> movePlayer(0, 1));
 
+        view.findViewById(R.id.sleep).setOnClickListener(v -> {
+            String cause = null;
+
+            if (player.getHunger() <= 90) {
+                if (player.getThirst() <= 90) {
+                    if (player.getPain() <= 50) {
+                        player.addEnergy(10);
+                        player.addHunger(2);
+                        player.addThirst(4);
+                        player.addSanity(1);
+                    } else cause = "pain";
+                } else cause = "thirst";
+            } else cause = "hunger";
+
+            if (cause != null) {
+                Toast.makeText(getContext(), "You can't sleep because of " + cause + '.', Toast.LENGTH_SHORT).show();
+            }
+
+            ((MainActivity) getContext()).updateIndicators();
+        });
+
         return view;
     }
 

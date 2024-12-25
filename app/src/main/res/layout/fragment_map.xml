@@ -23,9 +23,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintVertical_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
     <TableLayout
         android:layout_width="wrap_content"
@@ -41,22 +41,28 @@
 
             <Button
                 android:id="@+id/up"
+                android:layout_margin="4dp"
                 android:text="Up" />
 
             <Space />
 
         </TableRow>
 
-        <TableRow>
+        <TableRow android:gravity="center">
 
             <Button
                 android:id="@+id/left"
+                android:layout_margin="4dp"
                 android:text="Left" />
 
-            <Space />
+            <Button
+                android:id="@+id/sleep"
+                android:layout_margin="4dp"
+                android:text="Sleep" />
 
             <Button
                 android:id="@+id/right"
+                android:layout_margin="4dp"
                 android:text="Right" />
 
         </TableRow>
@@ -67,6 +73,7 @@
 
             <Button
                 android:id="@+id/down"
+                android:layout_margin="4dp"
                 android:text="Down" />
 
             <Space />
