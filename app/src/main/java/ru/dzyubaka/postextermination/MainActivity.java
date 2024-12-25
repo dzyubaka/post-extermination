@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,8 +21,17 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final int SIZE = 501;
+
     private final Player player = new Player();
-    private final Tile[][] tiles = new Tile[49][49];
+    private final Tile[][] tiles = new Tile[SIZE][SIZE];
+
+    private LinearProgressIndicator sanityIndicator;
+    private LinearProgressIndicator hungerIndicator;
+    private LinearProgressIndicator thirstIndicator;
+    private LinearProgressIndicator energyIndicator;
+    private LinearProgressIndicator toxinsIndicator;
+    private LinearProgressIndicator painIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +44,28 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        sanityIndicator = findViewById(R.id.sanity);
+        hungerIndicator = findViewById(R.id.hunger);
+        thirstIndicator = findViewById(R.id.thirst);
+        energyIndicator = findViewById(R.id.energy);
+        toxinsIndicator = findViewById(R.id.toxins);
+        painIndicator = findViewById(R.id.pain);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         Random random = new Random();
 
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
-                if (random.nextInt(10) == 0) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.of("canned beans", 10, "water", 20, "chocolate", 5, "multitool", 3));
+                if (random.nextInt(100) < 5) {
+                    Map<Type, Integer> loot = Map.of(
+                            Type.CANNED_BEANS, 10,
+                            Type.WATER, 20,
+                            Type.CHOCOLATE, 5,
+                            Type.MULTITOOL, 3,
+                            Type.APPLE, 5,
+                            Type.ROTTEN_APPLE, 5
+                    );
+                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, loot);
                 } else {
                     tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0, null);
                 }
@@ -78,12 +103,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateIndicators() {
-        ((LinearProgressIndicator) findViewById(R.id.sanity)).setProgress(player.getSanity());
-        ((LinearProgressIndicator) findViewById(R.id.hunger)).setProgress(player.getHunger());
-        ((LinearProgressIndicator) findViewById(R.id.thirst)).setProgress(player.getThirst());
-        ((LinearProgressIndicator) findViewById(R.id.energy)).setProgress(player.getEnergy());
-        ((LinearProgressIndicator) findViewById(R.id.toxins)).setProgress(player.getToxins());
-        ((LinearProgressIndicator) findViewById(R.id.pain)).setProgress(player.getPain());
+        sanityIndicator.setProgress(player.getSanity());
+        hungerIndicator.setProgress(player.getHunger());
+        thirstIndicator.setProgress(player.getThirst());
+        energyIndicator.setProgress(player.getEnergy());
+        toxinsIndicator.setProgress(player.getToxins());
+        painIndicator.setProgress(player.getPain());
+
+        if (player.getSanity() == 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle("You're dead!")
+                    .setMessage("You survived for " + player.getTurns() + " turns.")
+                    .setCancelable(false)
+                    .show();
+        }
     }
 
 }

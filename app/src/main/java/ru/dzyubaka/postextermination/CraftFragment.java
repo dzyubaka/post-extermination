@@ -26,7 +26,7 @@ public class CraftFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ListView list = (ListView) inflater.inflate(R.layout.fragment_craft, container, false);
-        if (has("canned beans") && has("multitool")) {
+        if (has(Type.CANNED_BEANS) && has(Type.MULTITOOL)) {
             list.setAdapter(new ArrayAdapter<>(container.getContext(), R.layout.item_craft, new String[1]) {
                 @NonNull
                 @Override
@@ -34,13 +34,13 @@ public class CraftFragment extends Fragment {
                     View view = LayoutInflater.from(getContext()).inflate(R.layout.item_craft, parent, false);
                     view.setOnClickListener(v -> new AlertDialog.Builder(v.getContext())
                             .setTitle("Open canned beans")
-                            .setMessage(Item.prototypes.get("beans").description)
+                            .setMessage(Item.getDescription(Type.BEANS))
                             .setPositiveButton("Craft", (dialog, which) -> {
 
                                 int index = -1;
 
                                 for (int i = 0; i < inventory.size(); i++) {
-                                    if (inventory.get(i).name.equalsIgnoreCase("canned beans")) {
+                                    if (inventory.get(i).type.equals(Type.CANNED_BEANS)) {
                                         index = i;
                                         break;
                                     }
@@ -55,8 +55,11 @@ public class CraftFragment extends Fragment {
                                     }
                                 }
 
-                                inventory.add(Item.create("beans"));
-                                list.setAdapter(null);
+                                inventory.add(Item.create(Type.BEANS));
+
+                                if (!has(Type.CANNED_BEANS) || !has(Type.MULTITOOL)) {
+                                    list.setAdapter(null);
+                                }
                             })
                             .setNegativeButton("Close", null)
                             .show());
@@ -67,9 +70,9 @@ public class CraftFragment extends Fragment {
         return list;
     }
 
-    private boolean has(String key) {
+    private boolean has(Type type) {
         for (Item item : inventory) {
-            if (item.name.equalsIgnoreCase(key)) {
+            if (item.type.equals(type)) {
                 return true;
             }
         }

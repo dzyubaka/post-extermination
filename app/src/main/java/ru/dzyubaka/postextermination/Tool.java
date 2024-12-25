@@ -4,8 +4,8 @@ public class Tool extends Item {
 
     private int durability;
 
-    protected Tool(String name, int drawable, int durability) {
-        super(name, "Durability: " + durability, drawable);
+    protected Tool(Type type, String name, int drawable, int durability) {
+        super(type, name, "Durability: " + durability, drawable);
         this.durability = durability;
     }
 

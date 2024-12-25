@@ -15,7 +15,7 @@ public class Player {
     private int pain = 0;
 
     final Point position = new Point(24, 24);
-    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create("canned beans"), Item.create("chocolate"), Item.create("multitool"), Item.create("multitool")));
+    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create(Type.CANNED_BEANS), Item.create(Type.CHOCOLATE), Item.create(Type.MULTITOOL)));
 
     public int getSanity() {
         return sanity;
@@ -55,7 +55,7 @@ public class Player {
 
     public void action() {
         hunger++;
-        thirst++;
+        thirst += 2;
         energy--;
 
         if (hunger <= 20 && thirst <= 20 && energy >= 80 && toxins <= 20 && pain <= 20 && sanity < 100) {
