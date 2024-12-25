@@ -40,7 +40,7 @@ public class AreaFragment extends Fragment {
                 tile.searchesLeft--;
                 searchesLeft.setText(tile.searchesLeft + " searches left");
 
-                for (Map.Entry<Type, Integer> entry : tile.loot.entrySet()) {
+                for (Map.Entry<Item.Type, Integer> entry : tile.loot.entrySet()) {
                     if (random.nextInt(100) < entry.getValue()) {
                         tile.items.add(Item.create(entry.getKey()));
                         adapter.notifyItemInserted(tile.items.size() - 1);

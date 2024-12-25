@@ -22,6 +22,7 @@ public class Item implements Cloneable {
         prototypes.put(Type.MULTITOOL, new Tool(Type.MULTITOOL, "Multitool", "Useful knife.", R.drawable.multitool, 250, 10));
         prototypes.put(Type.APPLE, new Food(Type.APPLE, "Apple", "Fresh apple.", R.drawable.apple, 150, -15, -5, -5));
         prototypes.put(Type.ROTTEN_APPLE, new Food(Type.ROTTEN_APPLE, "Rotten apple", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
+        prototypes.put(Type.ENERGY_DRINK, new Food(Type.ENERGY_DRINK, "Energy drink", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
     }
 
     public static Item create(Type type) {
@@ -53,4 +54,16 @@ public class Item implements Cloneable {
             throw new AssertionError();
         }
     }
+
+    public enum Type {
+        CANNED_BEANS,
+        BEANS,
+        CHOCOLATE,
+        WATER,
+        MULTITOOL,
+        APPLE,
+        ROTTEN_APPLE,
+        ENERGY_DRINK,
+    }
+
 }

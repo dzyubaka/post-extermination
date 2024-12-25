@@ -18,7 +18,7 @@ public class Player {
     final int maxWeight = 10_000;
 
     final Point position = new Point(250, 250);
-    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create(Type.CANNED_BEANS), Item.create(Type.CHOCOLATE), Item.create(Type.MULTITOOL)));
+    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create(Item.Type.CANNED_BEANS), Item.create(Item.Type.CHOCOLATE), Item.create(Item.Type.MULTITOOL)));
 
     public int getSanity() {
         return sanity;
@@ -42,6 +42,10 @@ public class Player {
 
     public int getEnergy() {
         return energy;
+    }
+
+    public void addEnergy(int energy) {
+        this.energy = Math.min(Math.max(this.energy + energy, 0), 100);
     }
 
     public int getToxins() {
@@ -100,4 +104,5 @@ public class Player {
     public boolean canWalk() {
         return getWeight() <= maxWeight;
     }
+
 }

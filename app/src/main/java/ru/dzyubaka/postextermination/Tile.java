@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Tile {
 
-    final Map<Type, Integer> loot;
+    final Map<Item.Type, Integer> loot;
 
     String name;
     String description;
@@ -13,7 +13,7 @@ public class Tile {
     int searchesLeft;
     ArrayList<Item> items;
 
-    public Tile(String name, String description, int drawable, int searchesLeft, Map<Type, Integer> loot) {
+    public Tile(String name, String description, int drawable, int searchesLeft, Map<Item.Type, Integer> loot) {
         this.name = name;
         this.description = description;
         this.drawable = drawable;
