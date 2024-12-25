@@ -13,8 +13,11 @@ public class Player {
     private int energy = 100;
     private int toxins = 0;
     private int pain = 0;
+    private int turns = 0;
 
-    final Point position = new Point(24, 24);
+    final int maxWeight = 10_000;
+
+    final Point position = new Point(250, 250);
     final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create(Type.CANNED_BEANS), Item.create(Type.CHOCOLATE), Item.create(Type.MULTITOOL)));
 
     public int getSanity() {
@@ -25,8 +28,16 @@ public class Player {
         return hunger;
     }
 
+    public void addHunger(int hunger) {
+        this.hunger = Math.min(Math.max(this.hunger + hunger, 0), 100);
+    }
+
     public int getThirst() {
         return thirst;
+    }
+
+    public void addThirst(int thirst) {
+        this.thirst = Math.min(Math.max(this.thirst + thirst, 0), 100);
     }
 
     public int getEnergy() {
@@ -37,20 +48,16 @@ public class Player {
         return toxins;
     }
 
+    public void addToxins(int toxins) {
+        this.toxins = Math.min(Math.max(this.toxins + toxins, 0), 100);
+    }
+
     public int getPain() {
         return pain;
     }
 
-    public void addHunger(int hunger) {
-        this.hunger = Math.min(Math.max(this.hunger + hunger, 0), 100);
-    }
-
-    public void addThirst(int thirst) {
-        this.thirst = Math.min(Math.max(this.thirst + thirst, 0), 100);
-    }
-
-    public void addToxins(int toxins) {
-        this.toxins = Math.min(Math.max(this.toxins + toxins, 0), 100);
+    public int getTurns() {
+        return turns;
     }
 
     public void action() {
@@ -76,6 +83,21 @@ public class Player {
         energy = Math.min(Math.max(energy, 0), 100);
         toxins = Math.min(Math.max(toxins, 0), 100);
         pain = Math.min(Math.max(pain, 0), 100);
+
+        turns++;
     }
 
+    public int getWeight() {
+        int weight = 0;
+
+        for (Item item : inventory) {
+            weight += item.weight;
+        }
+
+        return weight;
+    }
+
+    public boolean canWalk() {
+        return getWeight() <= maxWeight;
+    }
 }

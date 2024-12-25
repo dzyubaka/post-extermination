@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MapFragment extends Fragment {
 
@@ -50,11 +51,15 @@ public class MapFragment extends Fragment {
     }
 
     private void movePlayer(int x, int y) {
-        player.position.x += x;
-        player.position.y += y;
-        player.action();
-        ((MainActivity) getContext()).updateIndicators();
-        updateMap();
+        if (player.canWalk()) {
+            player.position.x += x;
+            player.position.y += y;
+            player.action();
+            ((MainActivity) getContext()).updateIndicators();
+            updateMap();
+        } else {
+            Toast.makeText(getContext(), "Maximum weight exceeded", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateMap() {

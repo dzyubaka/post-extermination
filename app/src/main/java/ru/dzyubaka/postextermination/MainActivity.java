@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, new InventoryFragment(player.inventory, tiles[player.position.y][player.position.x], player))
+                .add(R.id.fragmentContainer, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
                 .commit();
 
         ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
 
             if (id == R.id.inventory) {
-                fragment = new InventoryFragment(player.inventory, tiles[player.position.y][player.position.x], player);
+                fragment = new InventoryFragment(player, tiles[player.position.y][player.position.x]);
             } else if (id == R.id.map) {
                 fragment = new MapFragment(player, tiles);
             } else if (id == R.id.craft) {

@@ -31,7 +31,7 @@ public class AreaFragment extends Fragment {
         ((TextView) view.findViewById(R.id.name)).setText(tile.name);
         TextView searchesLeft = view.findViewById(R.id.searchesLeft);
         searchesLeft.setText(tile.searchesLeft + " searches left");
-        ItemAdapter adapter = new ItemAdapter(tile.items, true, tile, player);
+        ItemAdapter adapter = new ItemAdapter(tile.items, true, tile, player, this);
         Random random = new Random();
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,12 +17,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private final boolean onFloor;
     private final Tile tile;
     private final Player player;
+    private final Fragment fragment;
 
-    public ItemAdapter(ArrayList<Item> items, boolean onFloor, Tile tile, Player player) {
+    public ItemAdapter(ArrayList<Item> items, boolean onFloor, Tile tile, Player player, Fragment fragment) {
         this.items = items;
         this.onFloor = onFloor;
         this.tile = tile;
         this.player = player;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -41,7 +44,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
                     .setTitle(item.name)
-                    .setMessage(item.description)
+                    .setMessage(item.getDescription())
                     .setNeutralButton("Close", null);
 
             if (onFloor) {
@@ -56,6 +59,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     int index = holder.getAdapterPosition();
                     items.remove(index);
                     notifyItemRemoved(index);
+                    ((InventoryFragment) fragment).updateWeight();
                     tile.items.add(item);
                 });
 
@@ -64,6 +68,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                         int index = holder.getAdapterPosition();
                         items.remove(index);
                         notifyItemRemoved(index);
+                        ((InventoryFragment) fragment).updateWeight();
                         player.addHunger(food.hunger);
                         player.addThirst(food.thirst);
                         player.addToxins(food.toxins);
