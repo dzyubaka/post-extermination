@@ -50,7 +50,9 @@ public class CraftFragment extends Fragment {
 
                                 for (Item item : inventory) {
                                     if (item instanceof Tool tool) {
-                                        tool.use();
+                                        if (tool.use()) {
+                                            inventory.remove(item);
+                                        }
                                         break;
                                     }
                                 }
