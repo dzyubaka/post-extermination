@@ -30,7 +30,7 @@ public class Player {
     boolean leftArmBleeding;
     boolean leftArmFracture;
     boolean rightHandBleeding;
-    boolean rightHandFracture;
+    boolean rightHandFracture = true;
     boolean leftLegBleeding;
     boolean leftLegFracture;
     boolean rightLegBleeding;
