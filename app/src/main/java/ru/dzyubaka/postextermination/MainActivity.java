@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             int id = item.getItemId();
-            Fragment fragment;
+            Fragment fragment = null;
 
             if (id == R.id.inventory) {
                 fragment = new InventoryFragment(player, tiles[player.position.y][player.position.x]);
@@ -114,9 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new CraftFragment(player.inventory);
             } else if (id == R.id.area) {
                 fragment = new AreaFragment(player, tiles[player.position.y][player.position.x]);
-            } else {
-                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
-                return false;
+            } else if (id == R.id.health) {
+                fragment = new HealthFragment(player);
             }
 
             transaction.replace(R.id.fragmentContainer, fragment);

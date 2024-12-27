@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HealthFragment">
+
+    <ImageView
+        android:id="@+id/human"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/human"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/head_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        app:layout_constraintVertical_bias="0.1"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/body_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/left_arm_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/left_arm_fracture"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/bone"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        app:layout_constraintVertical_bias="0.3"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/right_hand_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/right_hand_fracture"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/bone"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        app:layout_constraintVertical_bias="0.3"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/left_leg_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@+id/human"
+        app:layout_constraintVertical_bias="0.85"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/left_leg_fracture"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/bone"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@+id/human"
+        app:layout_constraintVertical_bias="0.7"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/right_leg_bleeding"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/blood"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        app:layout_constraintVertical_bias="0.85"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/right_leg_fracture"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/bone"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/human"
+        app:layout_constraintEnd_toEndOf="@id/human"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="@id/human"
+        app:layout_constraintTop_toTopOf="@id/human"
+        app:layout_constraintVertical_bias="0.7"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

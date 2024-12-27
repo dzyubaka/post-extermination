@@ -15,7 +15,7 @@ public class Player {
     private int pain = 0;
     private int turns = 0;
 
-    final int maxWeight = 10_000;
+    final int maxWeight = 8_000;
 
     final Point position = new Point(250, 250);
     final ArrayList<Item> inventory = new ArrayList<>(List.of(
@@ -24,6 +24,17 @@ public class Player {
             Item.create(Item.Type.MULTITOOL),
             Item.create(Item.Type.SHOVEL)
     ));
+
+    boolean headBleeding;
+    boolean bodyBleeding;
+    boolean leftArmBleeding;
+    boolean leftArmFracture;
+    boolean rightHandBleeding;
+    boolean rightHandFracture;
+    boolean leftLegBleeding;
+    boolean leftLegFracture;
+    boolean rightLegBleeding;
+    boolean rightLegFracture;
 
     public int getSanity() {
         return sanity;

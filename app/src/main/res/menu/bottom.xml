@@ -12,5 +12,7 @@
     <item
         android:id="@+id/area"
         android:title="Area" />
-    <item android:title="Health" />
+    <item
+        android:id="@+id/health"
+        android:title="Health" />
 </menu>
