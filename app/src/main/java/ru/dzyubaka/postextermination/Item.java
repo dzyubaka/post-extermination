@@ -24,6 +24,8 @@ public class Item implements Cloneable {
         prototypes.put(Type.ROTTEN_APPLE, new Food(Type.ROTTEN_APPLE, "Rotten apple.", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
         prototypes.put(Type.ENERGY_DRINK, new Food(Type.ENERGY_DRINK, "Energy drink.", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
         prototypes.put(Type.CHIPS, new Food(Type.CHIPS, "Chips", "Potato chips.", R.drawable.chips, 150, -20, 5, 0));
+        prototypes.put(Type.SHOVEL, new Tool(Type.SHOVEL, "Shovel", "Shovel", R.drawable.shovel, 1500, 20));
+        prototypes.put(Type.BANDAGE, new Item(Type.BANDAGE, "Bandage", "Bandage", R.drawable.bandage, 50));
     }
 
     public static Item create(Type type) {
@@ -66,6 +68,8 @@ public class Item implements Cloneable {
         ROTTEN_APPLE,
         ENERGY_DRINK,
         CHIPS,
+        SHOVEL,
+        BANDAGE
     }
 
 }

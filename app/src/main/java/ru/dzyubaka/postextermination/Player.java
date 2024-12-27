@@ -18,7 +18,12 @@ public class Player {
     final int maxWeight = 10_000;
 
     final Point position = new Point(250, 250);
-    final ArrayList<Item> inventory = new ArrayList<>(List.of(Item.create(Item.Type.CANNED_BEANS), Item.create(Item.Type.CHOCOLATE), Item.create(Item.Type.MULTITOOL)));
+    final ArrayList<Item> inventory = new ArrayList<>(List.of(
+            Item.create(Item.Type.CANNED_BEANS),
+            Item.create(Item.Type.CHOCOLATE),
+            Item.create(Item.Type.MULTITOOL),
+            Item.create(Item.Type.SHOVEL)
+    ));
 
     public int getSanity() {
         return sanity;

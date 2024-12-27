@@ -14,6 +14,7 @@ public class Tool extends Item {
         return super.getDescription() + "\nDurability: " + durability;
     }
 
+    /** @return returns true if broken */
     public boolean use() {
         durability--;
         return durability == 0;
