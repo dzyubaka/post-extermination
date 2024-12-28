@@ -49,30 +49,28 @@ public class AreaFragment extends Fragment {
                             .setTitle("Blockage")
                             .setMessage("You've found a blockage. How do you want to dig it up?")
                             .setPositiveButton("Shovel", (dialog1, which) -> {
-                                for (Item item : player.inventory) {
-                                    if (item instanceof Tool tool && tool.type == ItemType.SHOVEL) {
-                                        search(true);
-                                        if (tool.use()) {
-                                            player.inventory.remove(tool);
-                                        }
-                                        break;
+                                Tool shovel = (Tool) player.get(ItemType.SHOVEL);
+                                if (shovel != null) {
+                                    search(true);
+                                    if (shovel.use()) {
+                                        player.inventory.remove(shovel);
                                     }
                                 }
                             })
                             .setNegativeButton("Hands", (dialog2, which) -> {
                                 search(true);
                                 boolean injury = false;
-                                
+
                                 if (MainActivity.chance(10)) {
                                     player.bleeding.put(R.id.left_arm_bleeding, true);
                                     injury = true;
                                 }
-                                
+
                                 if (MainActivity.chance(10)) {
                                     player.bleeding.put(R.id.right_arm_bleeding, true);
                                     injury = true;
                                 }
-                                
+
                                 if (injury) {
                                     Toast.makeText(getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
                                 }
@@ -80,15 +78,7 @@ public class AreaFragment extends Fragment {
                             .setNeutralButton("Ignore", null)
                             .setCancelable(false)
                             .show();
-
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
-
-                    for (Item item : player.inventory) {
-                        if (item.type == ItemType.SHOVEL) {
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
-                            break;
-                        }
-                    }
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.get(ItemType.SHOVEL) != null);
                 } else {
                     player.action(getContext());
                     ((MainActivity) getContext()).updateIndicators();
