@@ -1,5 +1,6 @@
 package ru.dzyubaka.postextermination.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,9 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
+import ru.dzyubaka.postextermination.Item;
+import ru.dzyubaka.postextermination.ItemType;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tool;
 
 public class HealthFragment extends Fragment {
 
@@ -26,17 +31,38 @@ public class HealthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_health, container, false);
 
-        for (Map.Entry<Integer, Boolean> entry : player.injuries.entrySet()) {
+        Consumer<Map.Entry<Integer, Boolean>> consumer = entry -> {
             View view = root.findViewById(entry.getKey());
             view.setVisibility(entry.getValue() ? View.VISIBLE : View.GONE);
             view.setOnClickListener(v -> {
-                String injury = getResources().getResourceEntryName(entry.getKey()).replace('_', ' ');
-                new AlertDialog.Builder(getContext())
+                String injury = HealthFragment.this.getResources().getResourceEntryName(entry.getKey()).replace('_', ' ');
+                AlertDialog dialog = new AlertDialog.Builder(getContext())
                         .setTitle(Character.toUpperCase(injury.charAt(0)) + injury.substring(1))
+                        .setPositiveButton("Bandage", (dialog1, which) -> {
+                            for (Item item : player.inventory) {
+                                if (item.type == ItemType.BANDAGE) {
+                                    player.inventory.remove(item);
+                                    player.bleeding.put(entry.getKey(), false);
+                                    view.setVisibility(View.GONE);
+                                    break;
+                                }
+                            }
+                        })
                         .setNegativeButton("Close", null)
                         .show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+
+                for (Item item : player.inventory) {
+                    if (item.type == ItemType.BANDAGE) {
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                        break;
+                    }
+                }
             });
-        }
+        };
+
+        player.bleeding.entrySet().forEach(consumer);
+        player.fractures.entrySet().forEach(consumer);
 
         return root;
     }

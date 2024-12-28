@@ -75,6 +75,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                         player.addThirst(food.thirst);
                         player.addToxins(food.toxins);
                         player.addEnergy(food.energy);
+                        player.addPain(food.pain);
                         ((MainActivity) view.getContext()).updateIndicators();
                     });
                 }

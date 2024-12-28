@@ -11,5 +11,6 @@ public enum ItemType {
     ENERGY_DRINK,
     CHIPS,
     SHOVEL,
-    BANDAGE
+    BANDAGE,
+    PAINKILLERS
 }

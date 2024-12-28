@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Map;
-import java.util.Random;
 
 import ru.dzyubaka.postextermination.Item;
 import ru.dzyubaka.postextermination.ItemAdapter;
@@ -29,7 +28,6 @@ public class AreaFragment extends Fragment {
 
     private final Player player;
     private final Tile tile;
-    private final Random random = new Random();
     private ItemAdapter adapter;
 
     public AreaFragment(Player player, Tile tile) {
@@ -46,7 +44,7 @@ public class AreaFragment extends Fragment {
         adapter = new ItemAdapter(tile.items, true, tile, player, this);
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
-                if (tile.name.equals("Ruins") && random.nextInt(100) < 20) {
+                if (tile.name.equals("Ruins") && MainActivity.chance(20)) {
                     AlertDialog dialog = new AlertDialog.Builder(getContext())
                             .setTitle("Blockage")
                             .setMessage("You've found a blockage. How do you want to dig it up?")
@@ -61,8 +59,26 @@ public class AreaFragment extends Fragment {
                                     }
                                 }
                             })
-                            .setNegativeButton("Hands", (dialog2, which) -> search(true))
+                            .setNegativeButton("Hands", (dialog2, which) -> {
+                                search(true);
+                                boolean injury = false;
+                                
+                                if (MainActivity.chance(10)) {
+                                    player.bleeding.put(R.id.left_arm_bleeding, true);
+                                    injury = true;
+                                }
+                                
+                                if (MainActivity.chance(10)) {
+                                    player.bleeding.put(R.id.right_arm_bleeding, true);
+                                    injury = true;
+                                }
+                                
+                                if (injury) {
+                                    Toast.makeText(getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
+                                }
+                            })
                             .setNeutralButton("Ignore", null)
+                            .setCancelable(false)
                             .show();
 
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
@@ -74,7 +90,7 @@ public class AreaFragment extends Fragment {
                         }
                     }
                 } else {
-                    player.action();
+                    player.action(getContext());
                     ((MainActivity) getContext()).updateIndicators();
                     search();
                 }
@@ -93,7 +109,7 @@ public class AreaFragment extends Fragment {
 
     private void search() {
         for (Map.Entry<ItemType, Integer> entry : tile.loot.entrySet()) {
-            if (random.nextInt(100) < entry.getValue()) {
+            if (MainActivity.chance(entry.getValue())) {
                 tile.items.add(Item.create(entry.getKey()));
                 adapter.notifyItemInserted(tile.items.size() - 1);
             }

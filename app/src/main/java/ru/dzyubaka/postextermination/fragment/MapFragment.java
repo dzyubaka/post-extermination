@@ -80,7 +80,7 @@ public class MapFragment extends Fragment {
         if (player.canWalk()) {
             player.position.x += x;
             player.position.y += y;
-            player.action();
+            player.action(getContext());
             ((MainActivity) getContext()).updateIndicators();
             updateMap();
         } else {

@@ -1,6 +1,8 @@
 package ru.dzyubaka.postextermination;
 
+import android.content.Context;
 import android.graphics.Point;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,19 +26,23 @@ public class Player {
             Item.create(ItemType.CANNED_BEANS),
             Item.create(ItemType.CHOCOLATE),
             Item.create(ItemType.MULTITOOL),
-            Item.create(ItemType.SHOVEL)
+            Item.create(ItemType.SHOVEL),
+            Item.create(ItemType.BANDAGE)
     ));
 
-    public HashMap<Integer, Boolean> injuries = new HashMap<>(Map.of(
+    public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
             R.id.head_bleeding, false,
             R.id.body_bleeding, false,
             R.id.left_arm_bleeding, false,
-            R.id.left_arm_fracture, false,
             R.id.right_arm_bleeding, false,
-            R.id.right_arm_fracture, false,
             R.id.left_leg_bleeding, false,
+            R.id.right_leg_bleeding, false
+    ));
+
+    public HashMap<Integer, Boolean> fractures = new HashMap<>(Map.of(
+            R.id.left_arm_fracture, false,
+            R.id.right_arm_fracture, false,
             R.id.left_leg_fracture, false,
-            R.id.right_leg_bleeding, false,
             R.id.right_leg_fracture, false
     ));
 
@@ -84,11 +90,15 @@ public class Player {
         return pain;
     }
 
+    public void addPain(int pain) {
+        this.pain = Math.min(Math.max(this.pain + pain, 0), 100);
+    }
+
     public int getTurns() {
         return turns;
     }
 
-    public void action() {
+    public void action(Context context) {
         hunger++;
         thirst += 2;
         energy--;
@@ -104,6 +114,27 @@ public class Player {
         if (toxins >= 100) sanity--;
         if (pain >= 50) sanity--;
         if (pain >= 100) sanity--;
+
+        for (Map.Entry<Integer, Boolean> bleed : bleeding.entrySet()) {
+            if (bleed.getValue()) {
+                pain++;
+                sanity--;
+                if (MainActivity.chance(10)) {
+                    bleeding.put(bleed.getKey(), false);
+                    Toast.makeText(context, "Bleeding has stopped.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        for (Map.Entry<Integer, Boolean> fracture : fractures.entrySet()) {
+            if (fracture.getValue()) {
+                pain++;
+                if (MainActivity.chance(1)) {
+                    fractures.put(fracture.getKey(), false);
+                    Toast.makeText(context, "Fracture has healed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
 
         sanity = Math.min(Math.max(sanity, 0), 100);
         hunger = Math.min(Math.max(hunger, 0), 100);
@@ -128,4 +159,5 @@ public class Player {
     public boolean canWalk() {
         return getWeight() <= maxWeight;
     }
+
 }

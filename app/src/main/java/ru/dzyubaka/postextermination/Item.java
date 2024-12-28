@@ -21,11 +21,12 @@ public class Item implements Cloneable {
         prototypes.put(ItemType.WATER, new Food(ItemType.WATER, "Water", "Bottle of water.", R.drawable.water, 500, 0, -30, -10));
         prototypes.put(ItemType.MULTITOOL, new Tool(ItemType.MULTITOOL, "Multitool", "Useful knife.", R.drawable.multitool, 250, 10));
         prototypes.put(ItemType.APPLE, new Food(ItemType.APPLE, "Apple", "Fresh apple.", R.drawable.apple, 150, -15, -5, -5));
-        prototypes.put(ItemType.ROTTEN_APPLE, new Food(ItemType.ROTTEN_APPLE, "Rotten apple.", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
-        prototypes.put(ItemType.ENERGY_DRINK, new Food(ItemType.ENERGY_DRINK, "Energy drink.", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
+        prototypes.put(ItemType.ROTTEN_APPLE, new Food(ItemType.ROTTEN_APPLE, "Rotten apple", "Rotten apple.", R.drawable.rotten_apple, 150, -15, -5, 20));
+        prototypes.put(ItemType.ENERGY_DRINK, new Food(ItemType.ENERGY_DRINK, "Energy drink", "Energy drink.", R.drawable.energy_drink, 500, -5, -30, 0, 20));
         prototypes.put(ItemType.CHIPS, new Food(ItemType.CHIPS, "Chips", "Potato chips.", R.drawable.chips, 150, -20, 5, 0));
-        prototypes.put(ItemType.SHOVEL, new Tool(ItemType.SHOVEL, "Shovel", "Shovel", R.drawable.shovel, 1500, 20));
-        prototypes.put(ItemType.BANDAGE, new Item(ItemType.BANDAGE, "Bandage", "Bandage", R.drawable.bandage, 50));
+        prototypes.put(ItemType.SHOVEL, new Tool(ItemType.SHOVEL, "Shovel", "Shovel.", R.drawable.shovel, 1500, 20));
+        prototypes.put(ItemType.BANDAGE, new Item(ItemType.BANDAGE, "Bandage", "To stop the bleeding.", R.drawable.bandage, 50));
+        prototypes.put(ItemType.PAINKILLERS, new Food(ItemType.PAINKILLERS, "Painkillers", "Painkillers.", R.drawable.painkillers, 50, -100));
     }
 
     public static Item create(ItemType type) {
