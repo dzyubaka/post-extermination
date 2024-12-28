@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 int chance = random.nextInt(100);
 
                 if (chance < 1) {
-                    tiles[i][j] = new Tile("Market", "Product market", R.drawable.shop, 5, Map.of(
+                    tiles[i][j] = new Tile("Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
                             ItemType.CANNED_BEANS, 10,
                             ItemType.WATER, 20,
                             ItemType.CHOCOLATE, 5,
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.CHIPS, 5
                     ));
                 } else if (chance < 3) {
-                    tiles[i][j] = new Tile("Ruins", "Ruins", R.drawable.ruins, 3, Map.of(
+                    tiles[i][j] = new Tile("Ruins", "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
                             ItemType.ROTTEN_APPLE, 10,
                             ItemType.SHOVEL, 1,
                             ItemType.MULTITOOL, 1,
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.PAINKILLERS, 2
                     ));
                 } else if (chance < 5) {
-                    tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, Map.ofEntries(
+                    tiles[i][j] = new Tile("House", "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
                             Map.entry(ItemType.CANNED_BEANS, 10),
                             Map.entry(ItemType.WATER, 20),
                             Map.entry(ItemType.CHOCOLATE, 5),
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             Map.entry(ItemType.PAINKILLERS, 2)
                     ));
                 } else {
-                    tiles[i][j] = new Tile("Wasteland", "Wasteland", R.drawable.wasteland, 0, null);
+                    tiles[i][j] = new Tile("Wasteland", "There was vegetation here once.", R.drawable.wasteland, 0, null);
                 }
             }
         }
