@@ -1,5 +1,6 @@
 package ru.dzyubaka.postextermination.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -58,7 +59,7 @@ public class AreaFragment extends Fragment {
                                 }
                             })
                             .setNegativeButton("Hands", (dialog2, which) -> {
-                                search(true);
+                                AreaFragment.this.search(true);
                                 boolean injury = false;
 
                                 if (MainActivity.chance(10)) {
@@ -72,13 +73,38 @@ public class AreaFragment extends Fragment {
                                 }
 
                                 if (injury) {
-                                    Toast.makeText(getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AreaFragment.this.getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .setNeutralButton("Ignore", null)
                             .setCancelable(false)
                             .show();
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.get(ItemType.SHOVEL) != null);
+                } else if (tile.name.equals("House") && MainActivity.chance(10)) {
+                    AlertDialog dialog = new AlertDialog.Builder(getContext())
+                            .setTitle("Locked door")
+                            .setMessage("You've found a locked door. How do you want to open it?")
+                            .setPositiveButton("Multitool", (dialog1, which) -> {
+                                tile.searchesLeft += 2;
+                                searchesLeft.setText(tile.searchesLeft + " searches left");
+                                Tool multitool = (Tool) player.get(ItemType.MULTITOOL);
+                                if (multitool != null) {
+                                    if (multitool.use()) {
+                                        player.inventory.remove(multitool);
+                                    }
+                                }
+                            })
+                            .setNegativeButton("Break down", (dialog2, which) -> {
+                                tile.searchesLeft += 2;
+                                searchesLeft.setText(tile.searchesLeft + " searches left");
+                                if (MainActivity.chance(30)) {
+                                    player.fractures.put(R.id.right_arm_fracture, true);
+                                    Toast.makeText(getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNeutralButton("Ignore", null)
+                            .show();
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.get(ItemType.MULTITOOL) != null);
                 } else {
                     player.action(getContext());
                     ((MainActivity) getContext()).updateIndicators();

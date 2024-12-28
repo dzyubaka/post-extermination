@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         toxinsIndicator = findViewById(R.id.toxins);
         painIndicator = findViewById(R.id.pain);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 int chance = random.nextInt(100);
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 if (chance < 1) {
                     tiles[i][j] = new Tile("Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
                             ItemType.CANNED_BEANS, 10,
-                            ItemType.WATER, 20,
+                            ItemType.WATER, 30,
                             ItemType.CHOCOLATE, 5,
                             ItemType.APPLE, 5,
                             ItemType.ROTTEN_APPLE, 5,
@@ -111,12 +109,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        fragmentManager.beginTransaction()
+        getSupportFragmentManager()
+                .beginTransaction()
                 .add(R.id.fragmentContainer, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
                 .commit();
 
         ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             int id = item.getItemId();
             Fragment fragment = null;
 

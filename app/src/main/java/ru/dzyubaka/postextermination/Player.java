@@ -11,27 +11,12 @@ import java.util.Map;
 
 public class Player {
 
-    private int sanity = 100;
-    private int hunger = 10;
-    private int thirst = 10;
-    private int energy = 100;
-    private int toxins = 0;
-    private int pain = 0;
-    private int turns = 0;
-
     public final int maxWeight = 8_000;
-
     public final Point position = new Point(250, 250);
+
     public final ArrayList<Item> inventory = new ArrayList<>(List.of(
-            Item.create(ItemType.CANNED_BEANS),
-            Item.create(ItemType.CHOCOLATE),
             Item.create(ItemType.MULTITOOL),
-            Item.create(ItemType.SHOVEL),
-            Item.create(ItemType.BANDAGE),
-            Item.create(ItemType.BRANCH),
-            Item.create(ItemType.MATCHES),
-            Item.create(ItemType.WATER),
-            Item.create(ItemType.FLOUR)
+            Item.create(ItemType.WATER)
     ));
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
@@ -49,6 +34,14 @@ public class Player {
             R.id.left_leg_fracture, false,
             R.id.right_leg_fracture, false
     ));
+
+    private int sanity = 100;
+    private int hunger = 10;
+    private int thirst = 10;
+    private int energy = 100;
+    private int toxins = 0;
+    private int pain = 0;
+    private int turns = 0;
 
     public int getSanity() {
         return sanity;
