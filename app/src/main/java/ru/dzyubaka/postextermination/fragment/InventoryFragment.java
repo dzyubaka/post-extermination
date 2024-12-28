@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.fragment;
 
 import android.os.Bundle;
 
@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import ru.dzyubaka.postextermination.ItemAdapter;
+import ru.dzyubaka.postextermination.Player;
+import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tile;
 
 public class InventoryFragment extends Fragment {
 

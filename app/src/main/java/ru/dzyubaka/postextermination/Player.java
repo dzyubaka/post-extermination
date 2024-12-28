@@ -15,26 +15,26 @@ public class Player {
     private int pain = 0;
     private int turns = 0;
 
-    final int maxWeight = 8_000;
+    public final int maxWeight = 8_000;
 
-    final Point position = new Point(250, 250);
-    final ArrayList<Item> inventory = new ArrayList<>(List.of(
+    public final Point position = new Point(250, 250);
+    public final ArrayList<Item> inventory = new ArrayList<>(List.of(
             Item.create(ItemType.CANNED_BEANS),
             Item.create(ItemType.CHOCOLATE),
             Item.create(ItemType.MULTITOOL),
             Item.create(ItemType.SHOVEL)
     ));
 
-    boolean headBleeding;
-    boolean bodyBleeding;
-    boolean leftArmBleeding;
-    boolean leftArmFracture;
-    boolean rightHandBleeding;
-    boolean rightHandFracture = true;
-    boolean leftLegBleeding;
-    boolean leftLegFracture;
-    boolean rightLegBleeding;
-    boolean rightLegFracture;
+    public boolean headBleeding;
+    public boolean bodyBleeding;
+    public boolean leftArmBleeding;
+    public boolean leftArmFracture;
+    public boolean rightHandBleeding;
+    public boolean rightHandFracture = true;
+    public boolean leftLegBleeding;
+    public boolean leftLegFracture;
+    public boolean rightLegBleeding;
+    public boolean rightLegFracture;
 
     public int getSanity() {
         return sanity;

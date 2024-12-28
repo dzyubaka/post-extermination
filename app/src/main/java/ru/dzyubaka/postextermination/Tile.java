@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class Tile {
 
-    final Map<ItemType, Integer> loot;
+    public final Map<ItemType, Integer> loot;
 
-    String name;
-    String description;
-    int drawable;
-    int searchesLeft;
-    ArrayList<Item> items;
+    public String name;
+    public String description;
+    public int drawable;
+    public int searchesLeft;
+    public ArrayList<Item> items;
 
     public Tile(String name, String description, int drawable, int searchesLeft, Map<ItemType, Integer> loot) {
         this.name = name;

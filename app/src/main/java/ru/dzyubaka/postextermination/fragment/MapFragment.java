@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.fragment;
 
 import android.os.Bundle;
 
@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import ru.dzyubaka.postextermination.MainActivity;
+import ru.dzyubaka.postextermination.Player;
+import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tile;
 
 public class MapFragment extends Fragment {
 

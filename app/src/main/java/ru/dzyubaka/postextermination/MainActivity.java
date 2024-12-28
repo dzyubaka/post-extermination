@@ -18,6 +18,12 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import java.util.Map;
 import java.util.Random;
 
+import ru.dzyubaka.postextermination.fragment.AreaFragment;
+import ru.dzyubaka.postextermination.fragment.CraftFragment;
+import ru.dzyubaka.postextermination.fragment.HealthFragment;
+import ru.dzyubaka.postextermination.fragment.InventoryFragment;
+import ru.dzyubaka.postextermination.fragment.MapFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private final int SIZE = 501;

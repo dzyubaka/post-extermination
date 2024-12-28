@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.fragment;
 
 import android.os.Bundle;
 
@@ -14,6 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
+import ru.dzyubaka.postextermination.Item;
+import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tool;
 
 public class CraftFragment extends Fragment {
 

@@ -8,7 +8,7 @@ public class Item implements Cloneable {
 
     private static final HashMap<ItemType, Item> prototypes = new HashMap<>();
 
-    final ItemType type;
+    public final ItemType type;
     final String name;
     private final String description;
     final int drawable;

@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.fragment;
 
 import android.os.Bundle;
 
@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import ru.dzyubaka.postextermination.Player;
+import ru.dzyubaka.postextermination.R;
 
 public class HealthFragment extends Fragment {
 

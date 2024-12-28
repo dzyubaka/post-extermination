@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.fragment;
 
 import android.os.Bundle;
 
@@ -15,6 +15,15 @@ import android.widget.Toast;
 
 import java.util.Map;
 import java.util.Random;
+
+import ru.dzyubaka.postextermination.Item;
+import ru.dzyubaka.postextermination.ItemAdapter;
+import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.MainActivity;
+import ru.dzyubaka.postextermination.Player;
+import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tile;
+import ru.dzyubaka.postextermination.Tool;
 
 public class AreaFragment extends Fragment {
 
