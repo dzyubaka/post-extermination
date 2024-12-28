@@ -50,12 +50,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     .setNeutralButton("Close", null);
 
             if (onFloor) {
-                builder.setPositiveButton("Take", (dialog, which) -> {
-                    int index = holder.getAdapterPosition();
-                    items.remove(index);
-                    notifyItemRemoved(index);
-                    player.inventory.add(item);
-                });
+                if (item.weight > 0) {
+                    builder.setPositiveButton("Take", (dialog, which) -> {
+                        int index = holder.getAdapterPosition();
+                        items.remove(index);
+                        notifyItemRemoved(index);
+                        player.inventory.add(item);
+                    });
+                }
             } else {
                 builder.setNegativeButton("Drop", (dialog, which) -> {
                     int index = holder.getAdapterPosition();

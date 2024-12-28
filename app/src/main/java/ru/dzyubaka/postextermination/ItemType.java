@@ -12,5 +12,9 @@ public enum ItemType {
     CHIPS,
     SHOVEL,
     BANDAGE,
-    PAINKILLERS
+    PAINKILLERS,
+    BRANCH,
+    STONE,
+    MATCHES,
+    CAMPFIRE
 }

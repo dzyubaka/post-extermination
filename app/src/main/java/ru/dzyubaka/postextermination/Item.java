@@ -12,7 +12,7 @@ public class Item implements Cloneable {
     final String name;
     private final String description;
     final int drawable;
-    final int weight;
+    public int weight;
 
     static {
         prototypes.put(ItemType.CANNED_BEANS, new Item(ItemType.CANNED_BEANS, "Canned beans", "Tin can of beans.", R.drawable.canned_beans, 400));
@@ -27,6 +27,10 @@ public class Item implements Cloneable {
         prototypes.put(ItemType.SHOVEL, new Tool(ItemType.SHOVEL, "Shovel", "Old, but of high quality.", R.drawable.shovel, 1500, 20));
         prototypes.put(ItemType.BANDAGE, new Item(ItemType.BANDAGE, "Bandage", "To stop the bleeding.", R.drawable.bandage, 50));
         prototypes.put(ItemType.PAINKILLERS, new Food(ItemType.PAINKILLERS, "Painkillers", "They are able to completely remove the pain.", R.drawable.painkillers, 50, -100));
+        prototypes.put(ItemType.BRANCH, new Item(ItemType.BRANCH, "Branch", null, R.drawable.branch, 150));
+        prototypes.put(ItemType.STONE, new Item(ItemType.STONE, "Stone", null, R.drawable.stone, 500));
+        prototypes.put(ItemType.MATCHES, new Tool(ItemType.MATCHES, "Matches", null, R.drawable.matches, 20, 5));
+        prototypes.put(ItemType.CAMPFIRE, new Item(ItemType.CAMPFIRE, "Campfire", null, R.drawable.campfire, 0));
     }
 
     public static Item create(ItemType type) {
@@ -35,6 +39,10 @@ public class Item implements Cloneable {
 
     public static String getDescription(ItemType type) {
         return prototypes.get(type).description;
+    }
+
+    public static int getDrawable(ItemType type) {
+        return prototypes.get(type).drawable;
     }
 
     protected Item(ItemType type, String name, String description, int drawable, int weight) {

@@ -11,78 +11,87 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import ru.dzyubaka.postextermination.Craft;
 import ru.dzyubaka.postextermination.Item;
 import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Tile;
 import ru.dzyubaka.postextermination.Tool;
 
 public class CraftFragment extends Fragment {
 
-    ArrayList<Item> inventory;
+    private final Player player;
+    private final Tile tile;
+    private final ArrayList<Craft> possibleCrafts = new ArrayList<>();
 
-    public CraftFragment(ArrayList<Item> inventory) {
-        this.inventory = inventory;
+    private final Craft[] crafts = {
+            new Craft("Open canned beans", ItemType.CANNED_BEANS, ItemType.MULTITOOL, ItemType.BEANS),
+            new Craft(null, ItemType.BRANCH, ItemType.MATCHES, ItemType.CAMPFIRE)
+    };
+
+    public CraftFragment(Player player, Tile tile) {
+        this.player = player;
+        this.tile = tile;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ListView list = (ListView) inflater.inflate(R.layout.fragment_craft, container, false);
-        if (has(ItemType.CANNED_BEANS) && has(ItemType.MULTITOOL)) {
-            list.setAdapter(new ArrayAdapter<>(container.getContext(), R.layout.item_craft, new String[1]) {
-                @NonNull
-                @Override
-                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                    View view = LayoutInflater.from(getContext()).inflate(R.layout.item_craft, parent, false);
-                    view.setOnClickListener(v -> new AlertDialog.Builder(v.getContext())
-                            .setTitle("Open canned beans")
-                            .setMessage(Item.getDescription(ItemType.BEANS))
-                            .setPositiveButton("Craft", (dialog, which) -> {
+        updatePossibleCrafts();
+        int layout = R.layout.item_craft;
 
-                                int index = -1;
+        list.setAdapter(new ArrayAdapter<>(container.getContext(), layout, possibleCrafts) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = LayoutInflater.from(getContext()).inflate(layout, parent, false);
+                Craft craft = possibleCrafts.get(position);
+                ((ImageView) view.findViewById(R.id.left_item)).setImageResource(Item.getDrawable(craft.leftItem));
+                ((ImageView) view.findViewById(R.id.right_item)).setImageResource(Item.getDrawable(craft.rightItem));
+                ((ImageView) view.findViewById(R.id.result)).setImageResource(Item.getDrawable(craft.result));
+                view.setOnClickListener(v -> new AlertDialog.Builder(v.getContext())
+                        .setTitle(craft.description)
+                        .setMessage(Item.getDescription(ItemType.BEANS))
+                        .setPositiveButton("Craft", (dialog, which) -> {
+                            player.inventory.remove(player.get(craft.leftItem));
+                            Tool tool = (Tool) player.get(craft.rightItem);
+                            Item result = Item.create(craft.result);
 
-                                for (int i = 0; i < inventory.size(); i++) {
-                                    if (inventory.get(i).type.equals(ItemType.CANNED_BEANS)) {
-                                        index = i;
-                                        break;
-                                    }
-                                }
+                            if (tool.use()) {
+                                player.inventory.remove(tool);
+                            }
 
-                                inventory.remove(index);
+                            if (result.weight > 0) {
+                                player.inventory.add(result);
+                            } else {
+                                tile.items.add(result);
+                            }
 
-                                for (Item item : inventory) {
-                                    if (item instanceof Tool tool) {
-                                        if (tool.use()) {
-                                            inventory.remove(item);
-                                        }
-                                        break;
-                                    }
-                                }
-
-                                inventory.add(Item.create(ItemType.BEANS));
-
-                                if (!has(ItemType.CANNED_BEANS) || !has(ItemType.MULTITOOL)) {
-                                    list.setAdapter(null);
-                                }
-                            })
-                            .setNegativeButton("Close", null)
-                            .show());
-                    return view;
-                }
-            });
-        }
+                            updatePossibleCrafts();
+                            notifyDataSetChanged();
+                        })
+                        .setNegativeButton("Close", null)
+                        .show());
+                return view;
+            }
+        });
         return list;
     }
 
-    private boolean has(ItemType type) {
-        for (Item item : inventory) {
-            if (item.type.equals(type)) {
-                return true;
+    private void updatePossibleCrafts() {
+        possibleCrafts.clear();
+
+        for (Craft craft : crafts) {
+            if (player.get(craft.leftItem) != null && player.get(craft.rightItem) != null) {
+                possibleCrafts.add(craft);
             }
         }
-        return false;
     }
+
 }

@@ -101,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
                             Map.entry(ItemType.PAINKILLERS, 2)
                     ));
                 } else {
-                    tiles[i][j] = new Tile("Wasteland", "There was vegetation here once.", R.drawable.wasteland, 0, null);
+                    tiles[i][j] = new Tile("Wasteland", "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
+                            ItemType.BRANCH, 50,
+                            ItemType.STONE, 30
+                    ));
                 }
             }
         }
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.map) {
                 fragment = new MapFragment(player, tiles);
             } else if (id == R.id.craft) {
-                fragment = new CraftFragment(player.inventory);
+                fragment = new CraftFragment(player, tiles[player.position.y][player.position.x]);
             } else if (id == R.id.area) {
                 fragment = new AreaFragment(player, tiles[player.position.y][player.position.x]);
             } else if (id == R.id.health) {

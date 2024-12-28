@@ -11,7 +11,7 @@ public class Tool extends Item {
 
     @Override
     public String getDescription() {
-        return super.getDescription() + "\nDurability: " + durability;
+        return (super.getDescription() + "\nDurability: " + durability).replace("null\n", "");
     }
 
     /** @return returns true if broken */
