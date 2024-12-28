@@ -3,7 +3,9 @@ package ru.dzyubaka.postextermination;
 import android.graphics.Point;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player {
 
@@ -25,16 +27,18 @@ public class Player {
             Item.create(ItemType.SHOVEL)
     ));
 
-    public boolean headBleeding;
-    public boolean bodyBleeding;
-    public boolean leftArmBleeding;
-    public boolean leftArmFracture;
-    public boolean rightHandBleeding;
-    public boolean rightHandFracture = true;
-    public boolean leftLegBleeding;
-    public boolean leftLegFracture;
-    public boolean rightLegBleeding;
-    public boolean rightLegFracture;
+    public HashMap<Integer, Boolean> injuries = new HashMap<>(Map.of(
+            R.id.head_bleeding, false,
+            R.id.body_bleeding, false,
+            R.id.left_arm_bleeding, false,
+            R.id.left_arm_fracture, false,
+            R.id.right_arm_bleeding, false,
+            R.id.right_arm_fracture, false,
+            R.id.left_leg_bleeding, false,
+            R.id.left_leg_fracture, false,
+            R.id.right_leg_bleeding, false,
+            R.id.right_leg_fracture, false
+    ));
 
     public int getSanity() {
         return sanity;
