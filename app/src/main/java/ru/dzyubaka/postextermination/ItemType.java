@@ -16,5 +16,8 @@ public enum ItemType {
     BRANCH,
     STONE,
     MATCHES,
-    CAMPFIRE
+    CAMPFIRE,
+    BREAD,
+    FLOUR,
+    KNIFE
 }

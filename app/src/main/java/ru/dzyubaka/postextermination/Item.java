@@ -31,6 +31,9 @@ public class Item implements Cloneable {
         prototypes.put(ItemType.STONE, new Item(ItemType.STONE, "Stone", null, R.drawable.stone, 500));
         prototypes.put(ItemType.MATCHES, new Tool(ItemType.MATCHES, "Matches", null, R.drawable.matches, 20, 5));
         prototypes.put(ItemType.CAMPFIRE, new Item(ItemType.CAMPFIRE, "Campfire", null, R.drawable.campfire, 0));
+        prototypes.put(ItemType.BREAD, new Food(ItemType.BREAD, "Bread", null, R.drawable.bread, 300, -30, -5, 0));
+        prototypes.put(ItemType.FLOUR, new Tool(ItemType.FLOUR, "Flour", null, R.drawable.flour, 1000, 3));
+        prototypes.put(ItemType.KNIFE, new Tool(ItemType.KNIFE, "Knife", null, R.drawable.knife, 600,10));
     }
 
     public static Item create(ItemType type) {

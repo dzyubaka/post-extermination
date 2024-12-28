@@ -32,7 +32,8 @@ public class CraftFragment extends Fragment {
 
     private final Craft[] crafts = {
             new Craft("Open canned beans", ItemType.CANNED_BEANS, ItemType.MULTITOOL, ItemType.BEANS),
-            new Craft(null, ItemType.BRANCH, ItemType.MATCHES, ItemType.CAMPFIRE)
+            new Craft(null, ItemType.BRANCH, ItemType.MATCHES, ItemType.CAMPFIRE),
+            new Craft(null, ItemType.WATER, ItemType.FLOUR, ItemType.BREAD, ItemType.CAMPFIRE)
     };
 
     public CraftFragment(Player player, Tile tile) {
@@ -88,7 +89,16 @@ public class CraftFragment extends Fragment {
         possibleCrafts.clear();
 
         for (Craft craft : crafts) {
-            if (player.get(craft.leftItem) != null && player.get(craft.rightItem) != null) {
+            boolean meets = craft.requirement == null;
+
+            for (Item item : tile.items) {
+                if (item.type == craft.requirement) {
+                    meets = true;
+                    break;
+                }
+            }
+
+            if (player.get(craft.leftItem) != null && player.get(craft.rightItem) != null && meets) {
                 possibleCrafts.add(craft);
             }
         }

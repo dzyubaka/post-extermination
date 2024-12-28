@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.APPLE, 5,
                             ItemType.ROTTEN_APPLE, 5,
                             ItemType.ENERGY_DRINK, 5,
-                            ItemType.CHIPS, 5
+                            ItemType.CHIPS, 5,
+                            ItemType.BREAD, 5
                     ));
                 } else if (chance < 3) {
                     tiles[i][j] = new Tile("Ruins", "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
@@ -98,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                             Map.entry(ItemType.SHOVEL, 1),
                             Map.entry(ItemType.MULTITOOL, 1),
                             Map.entry(ItemType.BANDAGE, 2),
-                            Map.entry(ItemType.PAINKILLERS, 2)
+                            Map.entry(ItemType.PAINKILLERS, 2),
+                            Map.entry(ItemType.BREAD, 5)
                     ));
                 } else {
                     tiles[i][j] = new Tile("Wasteland", "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(

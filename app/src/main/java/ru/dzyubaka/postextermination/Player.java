@@ -29,7 +29,9 @@ public class Player {
             Item.create(ItemType.SHOVEL),
             Item.create(ItemType.BANDAGE),
             Item.create(ItemType.BRANCH),
-            Item.create(ItemType.MATCHES)
+            Item.create(ItemType.MATCHES),
+            Item.create(ItemType.WATER),
+            Item.create(ItemType.FLOUR)
     ));
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
