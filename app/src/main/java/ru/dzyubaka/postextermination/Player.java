@@ -19,10 +19,10 @@ public class Player {
 
     final Point position = new Point(250, 250);
     final ArrayList<Item> inventory = new ArrayList<>(List.of(
-            Item.create(Item.Type.CANNED_BEANS),
-            Item.create(Item.Type.CHOCOLATE),
-            Item.create(Item.Type.MULTITOOL),
-            Item.create(Item.Type.SHOVEL)
+            Item.create(ItemType.CANNED_BEANS),
+            Item.create(ItemType.CHOCOLATE),
+            Item.create(ItemType.MULTITOOL),
+            Item.create(ItemType.SHOVEL)
     ));
 
     boolean headBleeding;

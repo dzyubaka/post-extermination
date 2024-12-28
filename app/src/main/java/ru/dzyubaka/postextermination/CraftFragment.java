@@ -26,7 +26,7 @@ public class CraftFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ListView list = (ListView) inflater.inflate(R.layout.fragment_craft, container, false);
-        if (has(Item.Type.CANNED_BEANS) && has(Item.Type.MULTITOOL)) {
+        if (has(ItemType.CANNED_BEANS) && has(ItemType.MULTITOOL)) {
             list.setAdapter(new ArrayAdapter<>(container.getContext(), R.layout.item_craft, new String[1]) {
                 @NonNull
                 @Override
@@ -34,13 +34,13 @@ public class CraftFragment extends Fragment {
                     View view = LayoutInflater.from(getContext()).inflate(R.layout.item_craft, parent, false);
                     view.setOnClickListener(v -> new AlertDialog.Builder(v.getContext())
                             .setTitle("Open canned beans")
-                            .setMessage(Item.getDescription(Item.Type.BEANS))
+                            .setMessage(Item.getDescription(ItemType.BEANS))
                             .setPositiveButton("Craft", (dialog, which) -> {
 
                                 int index = -1;
 
                                 for (int i = 0; i < inventory.size(); i++) {
-                                    if (inventory.get(i).type.equals(Item.Type.CANNED_BEANS)) {
+                                    if (inventory.get(i).type.equals(ItemType.CANNED_BEANS)) {
                                         index = i;
                                         break;
                                     }
@@ -57,9 +57,9 @@ public class CraftFragment extends Fragment {
                                     }
                                 }
 
-                                inventory.add(Item.create(Item.Type.BEANS));
+                                inventory.add(Item.create(ItemType.BEANS));
 
-                                if (!has(Item.Type.CANNED_BEANS) || !has(Item.Type.MULTITOOL)) {
+                                if (!has(ItemType.CANNED_BEANS) || !has(ItemType.MULTITOOL)) {
                                     list.setAdapter(null);
                                 }
                             })
@@ -72,7 +72,7 @@ public class CraftFragment extends Fragment {
         return list;
     }
 
-    private boolean has(Item.Type type) {
+    private boolean has(ItemType type) {
         for (Item item : inventory) {
             if (item.type.equals(type)) {
                 return true;

@@ -43,7 +43,7 @@ public class AreaFragment extends Fragment {
                             .setMessage("You've found a blockage. How do you want to dig it up?")
                             .setPositiveButton("Shovel", (dialog1, which) -> {
                                 for (Item item : player.inventory) {
-                                    if (item instanceof Tool tool && tool.type == Item.Type.SHOVEL) {
+                                    if (item instanceof Tool tool && tool.type == ItemType.SHOVEL) {
                                         search(true);
                                         if (tool.use()) {
                                             player.inventory.remove(tool);
@@ -59,7 +59,7 @@ public class AreaFragment extends Fragment {
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
 
                     for (Item item : player.inventory) {
-                        if (item.type == Item.Type.SHOVEL) {
+                        if (item.type == ItemType.SHOVEL) {
                             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
                             break;
                         }
@@ -83,7 +83,7 @@ public class AreaFragment extends Fragment {
     }
 
     private void search() {
-        for (Map.Entry<Item.Type, Integer> entry : tile.loot.entrySet()) {
+        for (Map.Entry<ItemType, Integer> entry : tile.loot.entrySet()) {
             if (random.nextInt(100) < entry.getValue()) {
                 tile.items.add(Item.create(entry.getKey()));
                 adapter.notifyItemInserted(tile.items.size() - 1);

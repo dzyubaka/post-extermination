@@ -1,7 +1,6 @@
 package ru.dzyubaka.postextermination;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -59,36 +58,36 @@ public class MainActivity extends AppCompatActivity {
                 int chance = random.nextInt(100);
 
                 if (chance < 1) {
-                    Map<Item.Type, Integer> loot = Map.of(
-                            Item.Type.CANNED_BEANS, 10,
-                            Item.Type.WATER, 20,
-                            Item.Type.CHOCOLATE, 5,
-                            Item.Type.APPLE, 5,
-                            Item.Type.ROTTEN_APPLE, 5,
-                            Item.Type.ENERGY_DRINK, 5,
-                            Item.Type.CHIPS, 5
+                    Map<ItemType, Integer> loot = Map.of(
+                            ItemType.CANNED_BEANS, 10,
+                            ItemType.WATER, 20,
+                            ItemType.CHOCOLATE, 5,
+                            ItemType.APPLE, 5,
+                            ItemType.ROTTEN_APPLE, 5,
+                            ItemType.ENERGY_DRINK, 5,
+                            ItemType.CHIPS, 5
                     );
                     tiles[i][j] = new Tile("Market", "Product market", R.drawable.shop, 5, loot);
                 } else if (chance < 3) {
-                    Map<Item.Type, Integer> loot = Map.of(
-                            Item.Type.ROTTEN_APPLE, 10,
-                            Item.Type.SHOVEL, 1,
-                            Item.Type.MULTITOOL, 1,
-                            Item.Type.BANDAGE, 2
+                    Map<ItemType, Integer> loot = Map.of(
+                            ItemType.ROTTEN_APPLE, 10,
+                            ItemType.SHOVEL, 1,
+                            ItemType.MULTITOOL, 1,
+                            ItemType.BANDAGE, 2
                     );
                     tiles[i][j] = new Tile("Ruins", "Ruins", R.drawable.ruins, 3, loot);
                 } else if (chance < 5) {
-                    Map<Item.Type, Integer> loot = Map.of(
-                            Item.Type.CANNED_BEANS, 10,
-                            Item.Type.WATER, 20,
-                            Item.Type.CHOCOLATE, 5,
-                            Item.Type.APPLE, 5,
-                            Item.Type.ROTTEN_APPLE, 5,
-                            Item.Type.ENERGY_DRINK, 3,
-                            Item.Type.CHIPS, 3,
-                            Item.Type.SHOVEL, 1,
-                            Item.Type.MULTITOOL, 1,
-                            Item.Type.BANDAGE, 2
+                    Map<ItemType, Integer> loot = Map.of(
+                            ItemType.CANNED_BEANS, 10,
+                            ItemType.WATER, 20,
+                            ItemType.CHOCOLATE, 5,
+                            ItemType.APPLE, 5,
+                            ItemType.ROTTEN_APPLE, 5,
+                            ItemType.ENERGY_DRINK, 3,
+                            ItemType.CHIPS, 3,
+                            ItemType.SHOVEL, 1,
+                            ItemType.MULTITOOL, 1,
+                            ItemType.BANDAGE, 2
                     );
                     tiles[i][j] = new Tile("House", "House", R.drawable.house, 3, loot);
                 } else {
