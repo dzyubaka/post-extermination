@@ -98,7 +98,7 @@ public class AreaFragment extends Fragment {
                     .setNeutralButton("Ignore", null)
                     .setCancelable(event.cancelable)
                     .show();
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.get(event.requirement) != null);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.has(event.requirement));
             return true;
         }
         return false;

@@ -160,6 +160,10 @@ public class Player {
         return getWeight() <= maxWeight;
     }
 
+    public boolean has(ItemType type) {
+        return get(type) != null;
+    }
+
     public Item get(ItemType type) {
         for (Item item : inventory) {
             if (item.type == type) {

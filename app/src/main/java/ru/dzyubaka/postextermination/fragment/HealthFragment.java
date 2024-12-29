@@ -47,7 +47,7 @@ public class HealthFragment extends Fragment {
                         })
                         .setNegativeButton("Close", null)
                         .show();
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.get(ItemType.BANDAGE) != null);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.has(ItemType.BANDAGE));
             });
         };
 

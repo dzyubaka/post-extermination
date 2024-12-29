@@ -95,7 +95,7 @@ public class CraftFragment extends Fragment {
                 }
             }
 
-            if (player.get(craft.leftItem) != null && player.get(craft.rightItem) != null && meets) {
+            if (player.has(craft.leftItem) && player.has(craft.rightItem) && meets) {
                 possibleCrafts.add(craft);
             }
         }
