@@ -47,8 +47,8 @@ public class AreaFragment extends Fragment {
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
                 if (!handle(tile.event)) {
-                    player.action(getContext());
-                    ((MainActivity) getContext()).updateIndicators();
+                    player.action(requireContext());
+                    ((MainActivity) requireContext()).updateIndicators();
                     search();
                 }
 
@@ -81,7 +81,7 @@ public class AreaFragment extends Fragment {
 
     private boolean handle(Event event) {
         if (Utils.chance(event.chance)) {
-            AlertDialog dialog = new AlertDialog.Builder(getContext())
+            AlertDialog dialog = new AlertDialog.Builder(requireContext())
                     .setTitle(event.title)
                     .setMessage(event.description)
                     .setPositiveButton(event.positiveText, (dialog1, which) ->

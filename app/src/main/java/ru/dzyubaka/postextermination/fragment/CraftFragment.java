@@ -51,7 +51,7 @@ public class CraftFragment extends Fragment {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = LayoutInflater.from(getContext()).inflate(layout, parent, false);
+                View view = LayoutInflater.from(requireContext()).inflate(layout, parent, false);
                 Craft craft = possibleCrafts.get(position);
                 ((ImageView) view.findViewById(R.id.left_item)).setImageResource(Item.getDrawable(craft.leftItem));
                 ((ImageView) view.findViewById(R.id.right_item)).setImageResource(Item.getDrawable(craft.rightItem));

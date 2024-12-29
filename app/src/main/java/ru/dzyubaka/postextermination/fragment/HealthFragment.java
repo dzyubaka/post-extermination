@@ -35,7 +35,7 @@ public class HealthFragment extends Fragment {
             view.setVisibility(entry.getValue() ? View.VISIBLE : View.GONE);
             view.setOnClickListener(v -> {
                 String injury = getResources().getResourceEntryName(entry.getKey());
-                AlertDialog dialog = new AlertDialog.Builder(getContext())
+                AlertDialog dialog = new AlertDialog.Builder(requireContext())
                         .setTitle(Utils.title(injury))
                         .setPositiveButton("Bandage", (dialog1, which) -> {
                             Item bandage = player.get(ItemType.BANDAGE);

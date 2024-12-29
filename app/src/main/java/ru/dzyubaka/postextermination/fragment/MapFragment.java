@@ -68,10 +68,10 @@ public class MapFragment extends Fragment {
             } else cause = "hunger";
 
             if (cause != null) {
-                Toast.makeText(getContext(), "You can't sleep because of " + cause + '.', Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "You can't sleep because of " + cause + '.', Toast.LENGTH_SHORT).show();
             }
 
-            ((MainActivity) getContext()).updateIndicators();
+            ((MainActivity) requireContext()).updateIndicators();
         });
 
         return view;
@@ -81,11 +81,11 @@ public class MapFragment extends Fragment {
         if (player.canWalk()) {
             player.position.x += x;
             player.position.y += y;
-            player.action(getContext());
-            ((MainActivity) getContext()).updateIndicators();
+            player.action(requireContext());
+            ((MainActivity) requireContext()).updateIndicators();
             updateMap();
         } else {
-            Toast.makeText(getContext(), "Maximum weight exceeded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Maximum weight exceeded", Toast.LENGTH_SHORT).show();
         }
     }
 
