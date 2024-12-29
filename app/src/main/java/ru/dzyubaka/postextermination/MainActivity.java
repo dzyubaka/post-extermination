@@ -86,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                 Tool shovel = (Tool) player.get(ItemType.SHOVEL);
                                 if (shovel != null) {
                                     search.accept(true);
-                                    if (shovel.use()) {
-                                        player.inventory.remove(shovel);
-                                    }
+                                    shovel.use(player.inventory);
                                 }
                             },
                             "Hands",
@@ -137,9 +135,7 @@ public class MainActivity extends AppCompatActivity {
                                 searchesLeft.setText(tile.searchesLeft + " searches left");
                                 Tool multitool = (Tool) player.get(ItemType.MULTITOOL);
                                 if (multitool != null) {
-                                    if (multitool.use()) {
-                                        player.inventory.remove(multitool);
-                                    }
+                                    multitool.use(player.inventory);
                                 }
                             },
                             "Break down",

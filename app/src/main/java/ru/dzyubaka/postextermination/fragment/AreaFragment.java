@@ -46,7 +46,12 @@ public class AreaFragment extends Fragment {
         adapter = new ItemAdapter(tile.items, true, tile, player, this);
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
-                if (!handle(tile.event)) {
+                boolean occurred = false;
+                if (tile.event != null) {
+                    occurred = handle(tile.event);
+                }
+
+                if (!occurred) {
                     player.action(requireContext());
                     ((MainActivity) requireContext()).updateIndicators();
                     search();
@@ -59,7 +64,9 @@ public class AreaFragment extends Fragment {
             }
         });
         RecyclerView recycler = view.findViewById(R.id.recycler);
-        recycler.setLayoutManager(new GridLayoutManager(container.getContext(), 6));
+        recycler.setLayoutManager(new
+
+                GridLayoutManager(container.getContext(), 6));
         recycler.setAdapter(adapter);
         return view;
     }

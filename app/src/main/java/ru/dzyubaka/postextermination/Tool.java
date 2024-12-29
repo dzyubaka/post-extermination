@@ -1,5 +1,7 @@
 package ru.dzyubaka.postextermination;
 
+import java.util.ArrayList;
+
 public class Tool extends Item {
 
     private int durability;
@@ -14,9 +16,10 @@ public class Tool extends Item {
         return (super.getDescription() + "\nDurability: " + durability).replace("null\n", "");
     }
 
-    /** @return returns true if broken */
-    public boolean use() {
+    public void use(ArrayList<Item> inventory) {
         durability--;
-        return durability == 0;
+        if (durability == 0) {
+            inventory.remove(this);
+        }
     }
 }

@@ -63,10 +63,7 @@ public class CraftFragment extends Fragment {
                             player.inventory.remove(player.get(craft.leftItem));
                             Tool tool = (Tool) player.get(craft.rightItem);
                             Item result = Item.create(craft.result);
-
-                            if (tool.use()) {
-                                player.inventory.remove(tool);
-                            }
+                            tool.use(player.inventory);
 
                             if (result.weight > 0) {
                                 player.inventory.add(result);
