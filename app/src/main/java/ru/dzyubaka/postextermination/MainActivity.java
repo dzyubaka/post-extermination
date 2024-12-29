@@ -1,6 +1,7 @@
 package ru.dzyubaka.postextermination;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -9,7 +10,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 int chance = random.nextInt(100);
 
                 if (chance < 1) {
-                    tiles[i][j] = new Tile("Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
+                    tiles[i][j] = new Tile(TileType.MARKET, "Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
                             ItemType.CANNED_BEANS, 10,
                             ItemType.WATER, 30,
                             ItemType.CHOCOLATE, 5,
@@ -78,15 +78,50 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.BREAD, 5
                     ));
                 } else if (chance < 3) {
-                    tiles[i][j] = new Tile("Ruins", "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
+                    tiles[i][j] = new Tile(TileType.RUINS, "Ruins", "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
                             ItemType.ROTTEN_APPLE, 10,
                             ItemType.SHOVEL, 1,
                             ItemType.MULTITOOL, 1,
                             ItemType.BANDAGE, 2,
                             ItemType.PAINKILLERS, 2
+                    ), new Event(
+                            20,
+                            "Blockage",
+                            "You've found a blockage. How do you want to dig it up?",
+                            "Shovel",
+                            (player, tile, searchesLeft, search) -> {
+                                Tool shovel = (Tool) player.get(ItemType.SHOVEL);
+                                if (shovel != null) {
+                                    search.accept(true);
+                                    if (shovel.use()) {
+                                        player.inventory.remove(shovel);
+                                    }
+                                }
+                            },
+                            "Hands",
+                            (player, tile, searchesLeft, search) -> {
+                                search.accept(true);
+                                boolean injury = false;
+
+                                if (MainActivity.chance(10)) {
+                                    player.bleeding.put(R.id.left_arm_bleeding, true);
+                                    injury = true;
+                                }
+
+                                if (MainActivity.chance(10)) {
+                                    player.bleeding.put(R.id.right_arm_bleeding, true);
+                                    injury = true;
+                                }
+
+                                if (injury) {
+                                    Toast.makeText(searchesLeft.getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
+                                }
+                            },
+                            false,
+                            ItemType.SHOVEL
                     ));
                 } else if (chance < 5) {
-                    tiles[i][j] = new Tile("House", "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
+                    tiles[i][j] = new Tile(TileType.HOUSE, "House", "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
                             Map.entry(ItemType.CANNED_BEANS, 10),
                             Map.entry(ItemType.WATER, 20),
                             Map.entry(ItemType.CHOCOLATE, 5),
@@ -99,9 +134,35 @@ public class MainActivity extends AppCompatActivity {
                             Map.entry(ItemType.BANDAGE, 2),
                             Map.entry(ItemType.PAINKILLERS, 2),
                             Map.entry(ItemType.BREAD, 5)
+                    ), new Event(
+                            10,
+                            "Locked door",
+                            "You've found a locked door. How do you want to open it?",
+                            "Multitool",
+                            (player, tile, searchesLeft, search) -> {
+                                tile.searchesLeft += 2;
+                                searchesLeft.setText(tile.searchesLeft + " searches left");
+                                Tool multitool = (Tool) player.get(ItemType.MULTITOOL);
+                                if (multitool != null) {
+                                    if (multitool.use()) {
+                                        player.inventory.remove(multitool);
+                                    }
+                                }
+                            },
+                            "Break down",
+                            (player, tile, searchesLeft, search) -> {
+                                tile.searchesLeft += 2;
+                                searchesLeft.setText(tile.searchesLeft + " searches left");
+                                if (MainActivity.chance(30)) {
+                                    player.fractures.put(R.id.right_arm_fracture, true);
+                                    Toast.makeText(searchesLeft.getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
+                                }
+                            },
+                            true,
+                            ItemType.MULTITOOL
                     ));
                 } else {
-                    tiles[i][j] = new Tile("Wasteland", "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
+                    tiles[i][j] = new Tile(TileType.WASTELAND, "Wasteland", "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
                             ItemType.BRANCH, 50,
                             ItemType.STONE, 30
                     ));
