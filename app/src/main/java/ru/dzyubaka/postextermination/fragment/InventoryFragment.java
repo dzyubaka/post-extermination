@@ -34,7 +34,7 @@ public class InventoryFragment extends Fragment {
         weightTextView = root.findViewById(R.id.weight);
         updateWeight();
         RecyclerView recycler = root.findViewById(R.id.recycler);
-        recycler.setAdapter(new ItemAdapter(player.inventory, false, tile, player, this));
+        recycler.setAdapter(new ItemAdapter(player.inventory, tile.items, player, this));
         recycler.setLayoutManager(new GridLayoutManager(requireContext(), 6));
         return root;
     }

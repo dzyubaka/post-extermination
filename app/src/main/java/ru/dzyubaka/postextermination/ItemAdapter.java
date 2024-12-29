@@ -14,20 +14,19 @@ import java.util.ArrayList;
 import ru.dzyubaka.postextermination.fragment.InventoryFragment;
 import ru.dzyubaka.postextermination.model.Food;
 import ru.dzyubaka.postextermination.model.Item;
-import ru.dzyubaka.postextermination.model.Tile;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
+    /** Main rendering list. It becomes player items from inventory and tile items from place. */
     private final ArrayList<Item> items;
-    private final boolean onFloor;
-    private final Tile tile;
+    /** Not null only if main list is player items. */
+    private final ArrayList<Item> tileItems;
     private final Player player;
     private final Fragment fragment;
 
-    public ItemAdapter(ArrayList<Item> items, boolean onFloor, Tile tile, Player player, Fragment fragment) {
+    public ItemAdapter(ArrayList<Item> items, ArrayList<Item> tileItems, Player player, Fragment fragment) {
         this.items = items;
-        this.onFloor = onFloor;
-        this.tile = tile;
+        this.tileItems = tileItems;
         this.player = player;
         this.fragment = fragment;
     }
@@ -52,22 +51,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     .setMessage(item.getDescription())
                     .setNeutralButton("Close", null);
 
-            if (onFloor) {
-                if (item.weight > 0) {
-                    builder.setPositiveButton("Take", (dialog, which) -> {
-                        int index = holder.getAdapterPosition();
-                        items.remove(index);
-                        notifyItemRemoved(index);
-                        player.inventory.add(item);
-                    });
-                }
-            } else {
+            if (tileItems != null) {
                 builder.setNegativeButton("Drop", (dialog, which) -> {
                     int index = holder.getAdapterPosition();
                     items.remove(index);
                     notifyItemRemoved(index);
                     ((InventoryFragment) fragment).updateWeight();
-                    tile.items.add(item);
+                    tileItems.add(item);
                 });
 
                 if (item instanceof Food food) {
@@ -82,6 +72,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                         player.addEnergy(food.energy);
                         player.addPain(food.pain);
                         ((MainActivity) view.getContext()).updateIndicators();
+                    });
+                }
+            } else {
+                if (item.weight > 0) {
+                    builder.setPositiveButton("Take", (dialog, which) -> {
+                        int index = holder.getAdapterPosition();
+                        items.remove(index);
+                        notifyItemRemoved(index);
+                        player.inventory.add(item);
                     });
                 }
             }

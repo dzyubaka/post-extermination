@@ -43,7 +43,7 @@ public class AreaFragment extends Fragment {
         ((TextView) view.findViewById(R.id.name)).setText(tile.getName());
         searchesLeft = view.findViewById(R.id.searchesLeft);
         searchesLeft.setText(tile.searchesLeft + " searches left");
-        adapter = new ItemAdapter(tile.items, true, tile, player, this);
+        adapter = new ItemAdapter(tile.items, null, player, this);
         view.findViewById(R.id.search).setOnClickListener(v -> {
             if (tile.searchesLeft > 0) {
                 boolean occurred = false;
