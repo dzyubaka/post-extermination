@@ -16,6 +16,7 @@ import ru.dzyubaka.postextermination.MainActivity;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
 import ru.dzyubaka.postextermination.Tile;
+import ru.dzyubaka.postextermination.Utils;
 
 public class MapFragment extends Fragment {
 
@@ -94,7 +95,7 @@ public class MapFragment extends Fragment {
                 Tile tile = tiles[y + player.position.y - halfViewport][x + player.position.x - halfViewport];
                 ImageView imageView = (ImageView) gridLayout.getChildAt(x + y * 7);
                 imageView.setOnClickListener(view -> new AlertDialog.Builder(view.getContext())
-                        .setTitle(tile.name)
+                        .setTitle(tile.getName())
                         .setMessage(tile.description)
                         .setNegativeButton("Close", null)
                         .show());

@@ -40,7 +40,7 @@ public class AreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_area, container, false);
-        ((TextView) view.findViewById(R.id.name)).setText(tile.name);
+        ((TextView) view.findViewById(R.id.name)).setText(tile.getName());
         searchesLeft = view.findViewById(R.id.searchesLeft);
         searchesLeft.setText(tile.searchesLeft + " searches left");
         adapter = new ItemAdapter(tile.items, true, tile, player, this);

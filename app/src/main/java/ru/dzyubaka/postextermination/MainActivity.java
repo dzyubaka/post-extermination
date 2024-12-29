@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 int chance = Utils.chance();
 
                 if (chance < 1) {
-                    tiles[i][j] = new Tile(TileType.MARKET, "Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
+                    tiles[i][j] = new Tile(TileType.MARKET, "It may contain some food.", R.drawable.shop, 5, Map.of(
                             ItemType.CANNED_BEANS, 10,
                             ItemType.WATER, 30,
                             ItemType.CHOCOLATE, 5,
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.BREAD, 5
                     ));
                 } else if (chance < 3) {
-                    tiles[i][j] = new Tile(TileType.RUINS, "Ruins", "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
+                    tiles[i][j] = new Tile(TileType.RUINS, "A house destroyed after an explosion.", R.drawable.ruins, 3, Map.of(
                             ItemType.ROTTEN_APPLE, 10,
                             ItemType.SHOVEL, 1,
                             ItemType.MULTITOOL, 1,
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.SHOVEL
                     ));
                 } else if (chance < 5) {
-                    tiles[i][j] = new Tile(TileType.HOUSE, "House", "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
+                    tiles[i][j] = new Tile(TileType.HOUSE, "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
                             Map.entry(ItemType.CANNED_BEANS, 10),
                             Map.entry(ItemType.WATER, 20),
                             Map.entry(ItemType.CHOCOLATE, 5),
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.MULTITOOL
                     ));
                 } else {
-                    tiles[i][j] = new Tile(TileType.WASTELAND, "Wasteland", "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
+                    tiles[i][j] = new Tile(TileType.WASTELAND, "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
                             ItemType.BRANCH, 50,
                             ItemType.STONE, 30
                     ));

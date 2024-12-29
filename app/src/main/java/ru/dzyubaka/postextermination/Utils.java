@@ -13,4 +13,8 @@ public class Utils {
     public static int chance() {
         return random.nextInt(100);
     }
+
+    public static String title(String text) {
+        return (Character.toUpperCase(text.charAt(0)) + text.substring(1).toLowerCase()).replace('_', ' ');
+    }
 }

@@ -45,7 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         ((ImageView) holder.itemView).setImageResource(item.drawable);
         holder.itemView.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
-                    .setTitle(item.name)
+                    .setTitle(item.getName())
                     .setMessage(item.getDescription())
                     .setNeutralButton("Close", null);
 

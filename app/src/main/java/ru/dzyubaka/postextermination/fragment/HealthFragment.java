@@ -16,6 +16,7 @@ import ru.dzyubaka.postextermination.Item;
 import ru.dzyubaka.postextermination.ItemType;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Utils;
 
 public class HealthFragment extends Fragment {
 
@@ -33,9 +34,9 @@ public class HealthFragment extends Fragment {
             View view = root.findViewById(entry.getKey());
             view.setVisibility(entry.getValue() ? View.VISIBLE : View.GONE);
             view.setOnClickListener(v -> {
-                String injury = HealthFragment.this.getResources().getResourceEntryName(entry.getKey()).replace('_', ' ');
+                String injury = getResources().getResourceEntryName(entry.getKey());
                 AlertDialog dialog = new AlertDialog.Builder(getContext())
-                        .setTitle(Character.toUpperCase(injury.charAt(0)) + injury.substring(1))
+                        .setTitle(Utils.title(injury))
                         .setPositiveButton("Bandage", (dialog1, which) -> {
                             Item bandage = player.get(ItemType.BANDAGE);
                             if (bandage != null) {
