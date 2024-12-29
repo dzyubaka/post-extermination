@@ -1,8 +1,10 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.model;
 
 import android.widget.TextView;
 
 import java.util.function.Consumer;
+
+import ru.dzyubaka.postextermination.Player;
 
 public class Event {
 

@@ -1,7 +1,9 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.model;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import ru.dzyubaka.postextermination.Utils;
 
 public class Tile {
 

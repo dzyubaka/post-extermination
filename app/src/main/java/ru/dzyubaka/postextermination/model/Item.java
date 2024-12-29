@@ -1,8 +1,11 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.model;
 
 import androidx.annotation.NonNull;
 
 import java.util.HashMap;
+
+import ru.dzyubaka.postextermination.R;
+import ru.dzyubaka.postextermination.Utils;
 
 public class Item implements Cloneable {
 
@@ -10,7 +13,7 @@ public class Item implements Cloneable {
 
     public final ItemType type;
     private final String description;
-    final int drawable;
+    public final int drawable;
     public int weight;
 
     static {

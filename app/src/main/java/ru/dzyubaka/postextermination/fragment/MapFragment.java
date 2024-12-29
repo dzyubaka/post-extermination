@@ -15,8 +15,7 @@ import android.widget.Toast;
 import ru.dzyubaka.postextermination.MainActivity;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
-import ru.dzyubaka.postextermination.Tile;
-import ru.dzyubaka.postextermination.Utils;
+import ru.dzyubaka.postextermination.model.Tile;
 
 public class MapFragment extends Fragment {
 

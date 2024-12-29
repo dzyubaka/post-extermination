@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import ru.dzyubaka.postextermination.fragment.InventoryFragment;
+import ru.dzyubaka.postextermination.model.Food;
+import ru.dzyubaka.postextermination.model.Item;
+import ru.dzyubaka.postextermination.model.Tile;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 

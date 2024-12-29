@@ -1,4 +1,4 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.model;
 
 import java.util.ArrayList;
 

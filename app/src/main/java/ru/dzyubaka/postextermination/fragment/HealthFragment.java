@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import ru.dzyubaka.postextermination.Item;
-import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.model.Item;
+import ru.dzyubaka.postextermination.model.ItemType;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
 import ru.dzyubaka.postextermination.Utils;

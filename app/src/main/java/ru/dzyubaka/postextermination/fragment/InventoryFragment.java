@@ -14,7 +14,7 @@ import android.widget.TextView;
 import ru.dzyubaka.postextermination.ItemAdapter;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
-import ru.dzyubaka.postextermination.Tile;
+import ru.dzyubaka.postextermination.model.Tile;
 
 public class InventoryFragment extends Fragment {
 

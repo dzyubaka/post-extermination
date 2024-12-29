@@ -16,13 +16,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ru.dzyubaka.postextermination.Craft;
-import ru.dzyubaka.postextermination.Item;
-import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.model.Craft;
+import ru.dzyubaka.postextermination.model.Item;
+import ru.dzyubaka.postextermination.model.ItemType;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
-import ru.dzyubaka.postextermination.Tile;
-import ru.dzyubaka.postextermination.Tool;
+import ru.dzyubaka.postextermination.model.Tile;
+import ru.dzyubaka.postextermination.model.Tool;
 
 public class CraftFragment extends Fragment {
 

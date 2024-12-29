@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ru.dzyubaka.postextermination.model.Item;
+import ru.dzyubaka.postextermination.model.ItemType;
+
 public class Player {
 
     public final int maxWeight = 8_000;

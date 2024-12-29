@@ -15,14 +15,14 @@ import android.widget.Toast;
 
 import java.util.Map;
 
-import ru.dzyubaka.postextermination.Event;
-import ru.dzyubaka.postextermination.Item;
+import ru.dzyubaka.postextermination.model.Event;
+import ru.dzyubaka.postextermination.model.Item;
 import ru.dzyubaka.postextermination.ItemAdapter;
-import ru.dzyubaka.postextermination.ItemType;
+import ru.dzyubaka.postextermination.model.ItemType;
 import ru.dzyubaka.postextermination.MainActivity;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
-import ru.dzyubaka.postextermination.Tile;
+import ru.dzyubaka.postextermination.model.Tile;
 import ru.dzyubaka.postextermination.Utils;
 
 public class AreaFragment extends Fragment {

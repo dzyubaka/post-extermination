@@ -1,12 +1,12 @@
-package ru.dzyubaka.postextermination;
+package ru.dzyubaka.postextermination.model;
 
 public class Food extends Item {
 
-    int hunger;
-    int thirst;
-    int toxins;
-    int energy;
-    int pain;
+    public int hunger;
+    public int thirst;
+    public int toxins;
+    public int energy;
+    public int pain;
 
     protected Food(ItemType type, String description, int drawable, int weight, int hunger, int thirst, int toxins) {
         super(type, description, drawable, weight);

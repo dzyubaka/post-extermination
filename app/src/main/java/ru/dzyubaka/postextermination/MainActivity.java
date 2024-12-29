@@ -22,6 +22,11 @@ import ru.dzyubaka.postextermination.fragment.CraftFragment;
 import ru.dzyubaka.postextermination.fragment.HealthFragment;
 import ru.dzyubaka.postextermination.fragment.InventoryFragment;
 import ru.dzyubaka.postextermination.fragment.MapFragment;
+import ru.dzyubaka.postextermination.model.Event;
+import ru.dzyubaka.postextermination.model.ItemType;
+import ru.dzyubaka.postextermination.model.Tile;
+import ru.dzyubaka.postextermination.model.TileType;
+import ru.dzyubaka.postextermination.model.Tool;
 
 public class MainActivity extends AppCompatActivity {
 
