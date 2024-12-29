@@ -16,7 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Map;
-import java.util.Random;
 
 import ru.dzyubaka.postextermination.fragment.AreaFragment;
 import ru.dzyubaka.postextermination.fragment.CraftFragment;
@@ -25,8 +24,6 @@ import ru.dzyubaka.postextermination.fragment.InventoryFragment;
 import ru.dzyubaka.postextermination.fragment.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final static Random random = new Random();
 
     private final int SIZE = 501;
 
@@ -39,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private LinearProgressIndicator energyIndicator;
     private LinearProgressIndicator toxinsIndicator;
     private LinearProgressIndicator painIndicator;
-
-    public static boolean chance(int percent) {
-        return random.nextInt(100) < percent;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
-                int chance = random.nextInt(100);
+                int chance = Utils.chance();
 
                 if (chance < 1) {
                     tiles[i][j] = new Tile(TileType.MARKET, "Market", "It may contain some food.", R.drawable.shop, 5, Map.of(
@@ -103,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                                 search.accept(true);
                                 boolean injury = false;
 
-                                if (MainActivity.chance(10)) {
+                                if (Utils.chance(10)) {
                                     player.bleeding.put(R.id.left_arm_bleeding, true);
                                     injury = true;
                                 }
 
-                                if (MainActivity.chance(10)) {
+                                if (Utils.chance(10)) {
                                     player.bleeding.put(R.id.right_arm_bleeding, true);
                                     injury = true;
                                 }
@@ -153,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             (player, tile, searchesLeft, search) -> {
                                 tile.searchesLeft += 2;
                                 searchesLeft.setText(tile.searchesLeft + " searches left");
-                                if (MainActivity.chance(30)) {
+                                if (Utils.chance(30)) {
                                     player.fractures.put(R.id.right_arm_fracture, true);
                                     Toast.makeText(searchesLeft.getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
                                 }

@@ -23,6 +23,7 @@ import ru.dzyubaka.postextermination.MainActivity;
 import ru.dzyubaka.postextermination.Player;
 import ru.dzyubaka.postextermination.R;
 import ru.dzyubaka.postextermination.Tile;
+import ru.dzyubaka.postextermination.Utils;
 
 public class AreaFragment extends Fragment {
 
@@ -65,7 +66,7 @@ public class AreaFragment extends Fragment {
 
     private void search() {
         for (Map.Entry<ItemType, Integer> entry : tile.loot.entrySet()) {
-            if (MainActivity.chance(entry.getValue())) {
+            if (Utils.chance(entry.getValue())) {
                 tile.items.add(Item.create(entry.getKey()));
                 adapter.notifyItemInserted(tile.items.size() - 1);
             }
@@ -79,7 +80,7 @@ public class AreaFragment extends Fragment {
     }
 
     private boolean handle(Event event) {
-        if (MainActivity.chance(event.chance)) {
+        if (Utils.chance(event.chance)) {
             AlertDialog dialog = new AlertDialog.Builder(getContext())
                     .setTitle(event.title)
                     .setMessage(event.description)

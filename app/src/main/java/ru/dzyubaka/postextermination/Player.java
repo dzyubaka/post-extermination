@@ -116,7 +116,7 @@ public class Player {
             if (bleed.getValue()) {
                 pain++;
                 sanity--;
-                if (MainActivity.chance(10)) {
+                if (Utils.chance(10)) {
                     bleeding.put(bleed.getKey(), false);
                     Toast.makeText(context, "Bleeding has stopped.", Toast.LENGTH_SHORT).show();
                 }
@@ -126,7 +126,7 @@ public class Player {
         for (Map.Entry<Integer, Boolean> fracture : fractures.entrySet()) {
             if (fracture.getValue()) {
                 pain++;
-                if (MainActivity.chance(1)) {
+                if (Utils.chance(1)) {
                     fractures.put(fracture.getKey(), false);
                     Toast.makeText(context, "Fracture has healed.", Toast.LENGTH_SHORT).show();
                 }
