@@ -42,6 +42,10 @@ public class Item implements Cloneable {
         return prototypes.get(type).clone();
     }
 
+    public static String getName(ItemType type) {
+        return prototypes.get(type).getName();
+    }
+
     public static String getDescription(ItemType type) {
         return prototypes.get(type).description;
     }

@@ -19,7 +19,8 @@ public class Player {
 
     public final ArrayList<Item> inventory = new ArrayList<>(List.of(
             Item.create(ItemType.MULTITOOL),
-            Item.create(ItemType.WATER)
+            Item.create(ItemType.WATER),
+            Item.create(ItemType.MATCHES)
     ));
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
@@ -171,5 +172,15 @@ public class Player {
             }
         }
         return null;
+    }
+
+    public boolean has(ItemType type, int count) {
+        int c = 0;
+        for (Item item : inventory) {
+            if (item.type == type) {
+                c++;
+            }
+        }
+        return c == count;
     }
 }

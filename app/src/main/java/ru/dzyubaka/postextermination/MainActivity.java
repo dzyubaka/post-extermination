@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     tiles[i][j] = new Tile(TileType.WASTELAND, "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
                             ItemType.BRANCH, 50,
-                            ItemType.STONE, 30
+                            ItemType.STONE, 10
                     ));
                 }
             }

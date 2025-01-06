@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Utils {
 
-    public final static Random random = new Random();
+    private final static Random random = new Random();
 
     public static boolean chance(int percents) {
         return chance() < percents;

@@ -5,6 +5,15 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        tools:text="1x" />
+
     <ImageView
         android:id="@+id/left_item"
         android:layout_width="0dp"

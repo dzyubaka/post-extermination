@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -31,9 +32,10 @@ public class CraftFragment extends Fragment {
     private final ArrayList<Craft> possibleCrafts = new ArrayList<>();
 
     private final Craft[] crafts = {
-            new Craft("Open canned beans", ItemType.CANNED_BEANS, ItemType.MULTITOOL, ItemType.BEANS),
-            new Craft(null, ItemType.BRANCH, ItemType.MATCHES, ItemType.CAMPFIRE),
-            new Craft(null, ItemType.WATER, ItemType.FLOUR, ItemType.BREAD, ItemType.CAMPFIRE)
+            new Craft("Open canned beans", ItemType.CANNED_BEANS, 1, ItemType.MULTITOOL, ItemType.BEANS),
+            new Craft(null, ItemType.BRANCH, 2, ItemType.MATCHES, ItemType.CAMPFIRE),
+            new Craft(null, ItemType.WATER, 1, ItemType.FLOUR, ItemType.BREAD, ItemType.CAMPFIRE),
+            new Craft(null, ItemType.BRANCH, 1, ItemType.STONE, ItemType.KNIFE)
     };
 
     public CraftFragment(Player player, Tile tile) {
@@ -53,17 +55,27 @@ public class CraftFragment extends Fragment {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = LayoutInflater.from(requireContext()).inflate(layout, parent, false);
                 Craft craft = possibleCrafts.get(position);
+                if (craft.count > 1) {
+                    ((TextView) view.findViewById(R.id.count)).setText(craft.count + "x");
+                }
                 ((ImageView) view.findViewById(R.id.left_item)).setImageResource(Item.getDrawable(craft.leftItem));
                 ((ImageView) view.findViewById(R.id.right_item)).setImageResource(Item.getDrawable(craft.rightItem));
                 ((ImageView) view.findViewById(R.id.result)).setImageResource(Item.getDrawable(craft.result));
                 view.setOnClickListener(v -> new AlertDialog.Builder(v.getContext())
-                        .setTitle(craft.description)
-                        .setMessage(Item.getDescription(ItemType.BEANS))
+                        .setTitle(Item.getName(craft.result))
+                        .setMessage(craft.description)
                         .setPositiveButton("Craft", (dialog, which) -> {
-                            player.inventory.remove(player.get(craft.leftItem));
-                            Tool tool = (Tool) player.get(craft.rightItem);
+                            for (int i = 0; i < craft.count; i++) {
+                                player.inventory.remove(player.get(craft.leftItem));
+                            }
+
                             Item result = Item.create(craft.result);
-                            tool.use(player.inventory);
+
+                            if (player.get(craft.rightItem) instanceof Tool tool) {
+                                tool.use(player.inventory);
+                            } else {
+                                player.inventory.remove(player.get(craft.rightItem));
+                            }
 
                             if (result.weight > 0) {
                                 player.inventory.add(result);
@@ -95,7 +107,7 @@ public class CraftFragment extends Fragment {
                 }
             }
 
-            if (player.has(craft.leftItem) && player.has(craft.rightItem) && meets) {
+            if (player.has(craft.leftItem, craft.count) && player.has(craft.rightItem) && meets) {
                 possibleCrafts.add(craft);
             }
         }
