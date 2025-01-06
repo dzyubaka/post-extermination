@@ -19,5 +19,7 @@ public enum ItemType {
     CAMPFIRE,
     BREAD,
     FLOUR,
+    SCHOOL_BACKPACK,
+    TRAVEL_BACKPACK,
     KNIFE
 }

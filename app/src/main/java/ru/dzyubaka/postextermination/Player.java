@@ -9,18 +9,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ru.dzyubaka.postextermination.model.Equipment;
 import ru.dzyubaka.postextermination.model.Item;
 import ru.dzyubaka.postextermination.model.ItemType;
 
 public class Player {
 
-    public final int maxWeight = 8_000;
     public final Point position = new Point(250, 250);
 
     public final ArrayList<Item> inventory = new ArrayList<>(List.of(
             Item.create(ItemType.MULTITOOL),
             Item.create(ItemType.WATER),
-            Item.create(ItemType.MATCHES)
+            Item.create(ItemType.MATCHES),
+            Item.create(ItemType.KNIFE),
+            Item.create(ItemType.SCHOOL_BACKPACK),
+            Item.create(ItemType.TRAVEL_BACKPACK)
     ));
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
@@ -38,6 +41,8 @@ public class Player {
             R.id.left_leg_fracture, false,
             R.id.right_leg_fracture, false
     ));
+
+    private final int maxWeight = 8000;
 
     private int sanity = 100;
     private int hunger = 10;
@@ -147,6 +152,18 @@ public class Player {
         turns++;
     }
 
+    public int getMaxWeight() {
+        int weight = 0;
+
+        for (Item item : inventory) {
+            if (item instanceof Equipment equipment && equipment.equipped) {
+                weight += equipment.capacity;
+            }
+        }
+
+        return maxWeight + weight;
+    }
+
     public int getWeight() {
         int weight = 0;
 
@@ -158,7 +175,7 @@ public class Player {
     }
 
     public boolean canWalk() {
-        return getWeight() <= maxWeight;
+        return getWeight() <= getMaxWeight();
     }
 
     public boolean has(ItemType type) {

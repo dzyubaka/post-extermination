@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
                             Map.entry(ItemType.MULTITOOL, 1),
                             Map.entry(ItemType.BANDAGE, 2),
                             Map.entry(ItemType.PAINKILLERS, 2),
-                            Map.entry(ItemType.BREAD, 5)
+                            Map.entry(ItemType.BREAD, 5),
+                            Map.entry(ItemType.SCHOOL_BACKPACK, 1)
                     ), new Event(
                             10,
                             "Locked door",

@@ -40,6 +40,6 @@ public class InventoryFragment extends Fragment {
     }
 
     public void updateWeight() {
-        weightTextView.setText("Weight: " + player.getWeight() / 1000f + " / " + player.maxWeight / 1000f + " kg");
+        weightTextView.setText("Weight: " + player.getWeight() / 1000f + " / " + player.getMaxWeight() / 1000f + " kg");
     }
 }
