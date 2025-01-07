@@ -191,6 +191,6 @@ public class Player {
                 c++;
             }
         }
-        return c == count;
+        return c >= count;
     }
 }
