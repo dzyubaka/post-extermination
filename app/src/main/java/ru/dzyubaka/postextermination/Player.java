@@ -23,7 +23,8 @@ public class Player {
             Item.create(ItemType.MATCHES),
             Item.create(ItemType.KNIFE),
             Item.create(ItemType.SCHOOL_BACKPACK),
-            Item.create(ItemType.TRAVEL_BACKPACK)
+            Item.create(ItemType.TRAVEL_BACKPACK),
+            Item.create(ItemType.SHIRT)
     ));
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(

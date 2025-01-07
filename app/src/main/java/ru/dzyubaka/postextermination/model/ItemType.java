@@ -21,5 +21,6 @@ public enum ItemType {
     FLOUR,
     SCHOOL_BACKPACK,
     TRAVEL_BACKPACK,
-    KNIFE
+    KNIFE,
+    SHIRT
 }
