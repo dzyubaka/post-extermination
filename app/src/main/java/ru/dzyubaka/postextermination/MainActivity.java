@@ -23,6 +23,7 @@ import ru.dzyubaka.postextermination.fragment.HealthFragment;
 import ru.dzyubaka.postextermination.fragment.InventoryFragment;
 import ru.dzyubaka.postextermination.fragment.MapFragment;
 import ru.dzyubaka.postextermination.model.Event;
+import ru.dzyubaka.postextermination.model.Item;
 import ru.dzyubaka.postextermination.model.ItemType;
 import ru.dzyubaka.postextermination.model.Tile;
 import ru.dzyubaka.postextermination.model.TileType;
@@ -47,11 +48,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras.getBoolean("survival_kit")) {
+            player.inventory.add(Item.create(ItemType.MULTITOOL));
+            player.inventory.add(Item.create(ItemType.MATCHES));
+        }
+
+        if (extras.getBoolean("injury")) {
+            Integer[] keys = player.fractures.keySet().toArray(new Integer[0]);
+            player.fractures.put(keys[Utils.random(keys.length)], true);
+        }
+
+        if (extras.getBoolean("reduced_thirst")) {
+            player.thirstPerAction--;
+        }
+
+        if (extras.getBoolean("strong_back")) {
+            player.maxWeight += 2000;
+        }
 
         sanityIndicator = findViewById(R.id.sanity);
         hungerIndicator = findViewById(R.id.hunger);
@@ -167,10 +189,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragmentContainer, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
+                .add(R.id.container, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
                 .commit();
 
-        ((BottomNavigationView) findViewById(R.id.bottomNavigation)).setOnItemSelectedListener(item -> {
+        ((BottomNavigationView) findViewById(R.id.navigation)).setOnItemSelectedListener(item -> {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             int id = item.getItemId();
             Fragment fragment = null;
@@ -187,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new HealthFragment(player);
             }
 
-            transaction.replace(R.id.fragmentContainer, fragment);
+            transaction.replace(R.id.container, fragment);
             transaction.commit();
             return true;
         });

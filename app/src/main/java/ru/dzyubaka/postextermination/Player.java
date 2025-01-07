@@ -16,16 +16,7 @@ import ru.dzyubaka.postextermination.model.ItemType;
 public class Player {
 
     public final Point position = new Point(250, 250);
-
-    public final ArrayList<Item> inventory = new ArrayList<>(List.of(
-            Item.create(ItemType.MULTITOOL),
-            Item.create(ItemType.WATER),
-            Item.create(ItemType.MATCHES),
-            Item.create(ItemType.KNIFE),
-            Item.create(ItemType.SCHOOL_BACKPACK),
-            Item.create(ItemType.TRAVEL_BACKPACK),
-            Item.create(ItemType.SHIRT)
-    ));
+    public final ArrayList<Item> inventory = new ArrayList<>();
 
     public HashMap<Integer, Boolean> bleeding = new HashMap<>(Map.of(
             R.id.head_bleeding, false,
@@ -43,7 +34,8 @@ public class Player {
             R.id.right_leg_fracture, false
     ));
 
-    private final int maxWeight = 8000;
+    int thirstPerAction = 2;
+    int maxWeight = 8000;
 
     private int sanity = 100;
     private int hunger = 10;
@@ -107,7 +99,7 @@ public class Player {
 
     public void action(Context context) {
         hunger++;
-        thirst += 2;
+        thirst += thirstPerAction;
         energy--;
 
         if (hunger <= 20 && thirst <= 20 && energy >= 80 && toxins <= 20 && pain <= 20 && sanity < 100) {
