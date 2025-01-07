@@ -35,18 +35,20 @@ public class HealthFragment extends Fragment {
             view.setVisibility(entry.getValue() ? View.VISIBLE : View.GONE);
             view.setOnClickListener(v -> {
                 String injury = getResources().getResourceEntryName(entry.getKey());
-                AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                        .setTitle(Utils.title(injury))
-                        .setPositiveButton("Bandage", (dialog1, which) -> {
-                            Item bandage = player.get(ItemType.BANDAGE);
-                            if (bandage != null) {
-                                player.inventory.remove(bandage);
-                                player.bleeding.put(entry.getKey(), false);
-                                view.setVisibility(View.GONE);
-                            }
-                        })
-                        .setNegativeButton("Close", null)
-                        .show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext()).setTitle(Utils.title(injury));
+
+                if (player.bleeding.containsKey(entry.getKey())) {
+                    builder.setPositiveButton("Bandage", (dialog1, which) -> {
+                        Item bandage = player.get(ItemType.BANDAGE);
+                        if (bandage != null) {
+                            player.inventory.remove(bandage);
+                            player.bleeding.put(entry.getKey(), false);
+                            view.setVisibility(View.GONE);
+                        }
+                    });
+                }
+
+                AlertDialog dialog = builder.setNegativeButton("Close", null).show();
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(player.has(ItemType.BANDAGE));
             });
         };
