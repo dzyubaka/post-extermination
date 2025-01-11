@@ -9,7 +9,8 @@
     tools:context=".fragment.MapFragment">
 
     <GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/grid_layout"
+        android:background="@color/dark_khaki"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:columnCount="7"
@@ -20,7 +21,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:src="@drawable/player"
-        app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/grid_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout">
+        app:layout_constraintTop_toBottomOf="@+id/grid_layout">
 
         <TableRow>
 

@@ -32,12 +32,14 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        gridLayout = view.findViewById(R.id.gridLayout);
+        gridLayout = view.findViewById(R.id.grid_layout);
 
         for (int y = player.position.y - halfViewport; y <= player.position.y + halfViewport; y++) {
             for (int x = player.position.x - halfViewport; x <= player.position.x + halfViewport; x++) {
                 ImageView imageView = new ImageView(container.getContext());
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = 0;
+                params.height = params.width;
                 params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
                 params.rowSpec = params.columnSpec;
                 imageView.setLayoutParams(params);

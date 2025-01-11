@@ -1,6 +1,7 @@
 package ru.dzyubaka.postextermination;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 int chance = Utils.chance();
 
                 if (chance < 1) {
-                    tiles[i][j] = new Tile(TileType.MARKET, "It may contain some food.", R.drawable.shop, 5, Map.of(
+                    tiles[i][j] = new Tile(TileType.SHOP, "It may contain some food.", R.drawable.shop, 5, Map.of(
                             ItemType.CANNED_BEANS, 10,
                             ItemType.WATER, 30,
                             ItemType.CHOCOLATE, 5,
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                             ItemType.MULTITOOL
                     ));
                 } else {
-                    tiles[i][j] = new Tile(TileType.WASTELAND, "There was vegetation here once.", R.drawable.wasteland, 10, Map.of(
+                    tiles[i][j] = new Tile(TileType.WASTELAND, "There was vegetation here once.", View.NO_ID, 10, Map.of(
                             ItemType.BRANCH, 50,
                             ItemType.STONE, 10
                     ));
