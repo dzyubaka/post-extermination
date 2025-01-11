@@ -59,13 +59,15 @@
             android:textSize="32sp" />
 
         <TextView
-            android:text="Trait"
+            android:text="Strong Health"
             android:textSize="32sp" />
 
-        <CheckBox android:layout_gravity="top" />
+        <CheckBox
+            android:id="@+id/strong_health"
+            android:layout_gravity="top" />
 
         <TextView
-            android:text="-1"
+            android:text="-3"
             android:textSize="32sp" />
 
         <Space
@@ -97,23 +99,27 @@
             android:textSize="32sp" />
 
         <TextView
-            android:text="Trait"
+            android:text="Weak Stomach"
             android:textSize="32sp" />
 
-        <CheckBox android:layout_gravity="top" />
+        <CheckBox
+            android:id="@+id/weak_stomach"
+            android:layout_gravity="top" />
 
         <TextView
             android:text="+1"
             android:textSize="32sp" />
 
         <TextView
-            android:text="Trait"
+            android:text="Bad Fighter"
             android:textSize="32sp" />
 
-        <CheckBox android:layout_gravity="top" />
+        <CheckBox
+            android:id="@+id/bad_fighter"
+            android:layout_gravity="top" />
 
         <TextView
-            android:text="+1"
+            android:text="+2"
             android:textSize="32sp" />
 
     </GridLayout>

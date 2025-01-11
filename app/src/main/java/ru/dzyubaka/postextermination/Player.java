@@ -36,6 +36,7 @@ public class Player {
 
     int thirstPerAction = 2;
     int maxWeight = 8000;
+    int toxinsMultiplier = 1;
 
     private int sanity = 100;
     private int hunger = 10;

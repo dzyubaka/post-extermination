@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearProgressIndicator toxinsIndicator;
     private LinearProgressIndicator painIndicator;
 
-    private int injuryMultiplier = 1;
+    private float injuryMultiplier = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (extras.getBoolean("fragile_health")) {
-            injuryMultiplier = 2;
+            injuryMultiplier *= 2;
+        }
+
+        if (extras.getBoolean("strong_health")) {
+            injuryMultiplier /= 2;
+        }
+
+        if (extras.getBoolean("weak_stomach")) {
+            player.toxinsMultiplier = 2;
         }
 
         sanityIndicator = findViewById(R.id.sanity);
@@ -128,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
                                     search.accept(true);
                                     boolean injury = false;
 
-                                    if (Utils.chance(10 * injuryMultiplier)) {
+                                    if (Utils.chance((int) (10 * injuryMultiplier))) {
                                         player.bleeding.put(R.id.left_arm_bleeding, true);
                                         injury = true;
                                     }
 
-                                    if (Utils.chance(10 * injuryMultiplier)) {
+                                    if (Utils.chance((int) (10 * injuryMultiplier))) {
                                         player.bleeding.put(R.id.right_arm_bleeding, true);
                                         injury = true;
                                     }
@@ -191,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                                     tile.searchesLeft += 2;
                                     searchesLeft.setText(tile.searchesLeft + " searches left");
 
-                                    if (Utils.chance(30 * injuryMultiplier)) {
+                                    if (Utils.chance((int) (30 * injuryMultiplier))) {
                                         player.fractures.put(R.id.right_arm_fracture, true);
                                         Toast.makeText(searchesLeft.getContext(), "You have suffered a new injury.", Toast.LENGTH_SHORT).show();
                                     }

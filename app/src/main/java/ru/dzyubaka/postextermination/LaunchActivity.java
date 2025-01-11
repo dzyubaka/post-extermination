@@ -23,6 +23,9 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
     private CheckBox reducedThirst;
     private CheckBox strongBack;
     private CheckBox fragileHealth;
+    private CheckBox strongHealth;
+    private CheckBox weakStomach;
+    private CheckBox badFigher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +45,18 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
         reducedThirst = findViewById(R.id.reduced_thirst);
         strongBack = findViewById(R.id.strong_back);
         fragileHealth = findViewById(R.id.fragile_health);
+        strongHealth = findViewById(R.id.strong_health);
+        weakStomach = findViewById(R.id.weak_stomach);
+        badFigher = findViewById(R.id.bad_fighter);
 
         survivalKit.setOnCheckedChangeListener(this);
         injury.setOnCheckedChangeListener(this);
         reducedThirst.setOnCheckedChangeListener(this);
         strongBack.setOnCheckedChangeListener(this);
         fragileHealth.setOnCheckedChangeListener(this);
+        strongHealth.setOnCheckedChangeListener(this);
+        weakStomach.setOnCheckedChangeListener(this);
+        badFigher.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -61,6 +70,9 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtra("reduced_thirst", reducedThirst.isChecked());
             intent.putExtra("strong_back", strongBack.isChecked());
             intent.putExtra("fragile_health", fragileHealth.isChecked());
+            intent.putExtra("strong_health", strongHealth.isChecked());
+            intent.putExtra("weak_stomach", weakStomach.isChecked());
+            intent.putExtra("bad_fighter", badFigher.isChecked());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -92,7 +104,25 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
             } else {
                 points--;
             }
+        } else if (buttonView.getId() == R.id.strong_health) {
+            if (isChecked) {
+                points -= 3;
+            } else {
+                points += 3;
+            }
         } else if (buttonView.getId() == R.id.fragile_health) {
+            if (isChecked) {
+                points += 2;
+            } else {
+                points -= 2;
+            }
+        } else if (buttonView.getId() == R.id.weak_stomach) {
+            if (isChecked) {
+                points++;
+            } else {
+                points--;
+            }
+        } else if (buttonView.getId() == R.id.bad_fighter) {
             if (isChecked) {
                 points += 2;
             } else {
