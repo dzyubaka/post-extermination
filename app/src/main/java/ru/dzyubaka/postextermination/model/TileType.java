@@ -4,5 +4,6 @@ public enum TileType {
     WASTELAND,
     HOUSE,
     RUINS,
-    SHOP
+    SHOP,
+    PHARMACY
 }
