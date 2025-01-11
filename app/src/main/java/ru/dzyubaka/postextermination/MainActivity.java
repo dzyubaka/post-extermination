@@ -166,6 +166,14 @@ public class MainActivity extends AppCompatActivity {
                                 ItemType.CHOCOLATE, 50,
                                 ItemType.ENERGY_DRINK, 50
                         ));
+                    } else if (chance < 72) {
+                        tiles[i][j] = new Tile(TileType.MILITARY_BASE, null, R.drawable.military_base, 10, Map.of(
+                                ItemType.GUN, 10,
+                                ItemType.AMMO, 20,
+                                ItemType.WATER, 30,
+                                ItemType.RICE, 20,
+                                ItemType.FLOUR, 20
+                        ));
                     } else {
                         tiles[i][j] = new Tile(TileType.HOUSE, "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
                                 Map.entry(ItemType.CANNED_BEANS, 10),

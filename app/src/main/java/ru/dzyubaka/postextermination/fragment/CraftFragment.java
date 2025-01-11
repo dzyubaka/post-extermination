@@ -35,7 +35,8 @@ public class CraftFragment extends Fragment {
             new Craft("Open canned beans", ItemType.CANNED_BEANS, 1, ItemType.MULTITOOL, ItemType.BEANS),
             new Craft(null, ItemType.BRANCH, 2, ItemType.MATCHES, ItemType.CAMPFIRE),
             new Craft(null, ItemType.WATER, 1, ItemType.FLOUR, ItemType.BREAD, ItemType.CAMPFIRE),
-            new Craft(null, ItemType.BRANCH, 1, ItemType.STONE, ItemType.KNIFE)
+            new Craft(null, ItemType.BRANCH, 1, ItemType.STONE, ItemType.KNIFE),
+            new Craft(null, ItemType.WATER, 1, ItemType.RICE, ItemType.RICE_PORRIDGE, ItemType.CAMPFIRE)
     };
 
     public CraftFragment(Player player, Tile tile) {

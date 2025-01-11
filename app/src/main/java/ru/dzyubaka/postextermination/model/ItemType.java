@@ -22,5 +22,9 @@ public enum ItemType {
     SCHOOL_BACKPACK,
     TRAVEL_BACKPACK,
     KNIFE,
-    SHIRT
+    SHIRT,
+    GUN,
+    AMMO,
+    RICE,
+    RICE_PORRIDGE
 }

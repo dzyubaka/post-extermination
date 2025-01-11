@@ -6,5 +6,6 @@ public enum TileType {
     RUINS,
     SHOP,
     PHARMACY,
-    TENT
+    TENT,
+    MILITARY_BASE
 }

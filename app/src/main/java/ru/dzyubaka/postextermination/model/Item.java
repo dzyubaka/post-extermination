@@ -39,6 +39,10 @@ public class Item implements Cloneable {
         prototypes.put(ItemType.SCHOOL_BACKPACK, new Equipment(ItemType.SCHOOL_BACKPACK, null, R.drawable.school_backpack, 1000, EquipmentType.BACKPACK, 4000));
         prototypes.put(ItemType.TRAVEL_BACKPACK, new Equipment(ItemType.TRAVEL_BACKPACK, null, R.drawable.travel_backpack, 2000, EquipmentType.BACKPACK, 10000));
         prototypes.put(ItemType.SHIRT, new Equipment(ItemType.SHIRT, null, R.drawable.shirt, 300, EquipmentType.BODY, 0, 1));
+        prototypes.put(ItemType.GUN, new Equipment(ItemType.GUN, null, R.drawable.gun, 650, EquipmentType.WEAPON));
+        prototypes.put(ItemType.AMMO, new Tool(ItemType.AMMO, null, R.drawable.ammo, 200, 17));
+        prototypes.put(ItemType.RICE, new Tool(ItemType.RICE, null, R.drawable.rice, 1000, 3));
+        prototypes.put(ItemType.RICE_PORRIDGE, new Food(ItemType.RICE_PORRIDGE, null, R.drawable.rice_porridge, 300, -25, -10, -5));
     }
 
     public static Item create(ItemType type) {
