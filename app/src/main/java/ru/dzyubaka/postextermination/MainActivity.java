@@ -150,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
                                 ItemType.BANDAGE, 20,
                                 ItemType.PAINKILLERS, 20
                         ));
+                    } else if (chance < 71) {
+                        tiles[i][j] = new Tile(TileType.TENT, "May contain some useful items for survival", R.drawable.tent, 1, Map.of(
+                                ItemType.TRAVEL_BACKPACK, 100,
+                                ItemType.CANNED_BEANS, 50,
+                                ItemType.WATER, 50,
+                                ItemType.CHOCOLATE, 50,
+                                ItemType.ENERGY_DRINK, 50
+                        ));
                     } else {
                         tiles[i][j] = new Tile(TileType.HOUSE, "The house that survived the explosion.", R.drawable.house, 3, Map.ofEntries(
                                 Map.entry(ItemType.CANNED_BEANS, 10),
