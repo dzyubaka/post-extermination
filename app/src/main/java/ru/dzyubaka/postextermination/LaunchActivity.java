@@ -17,10 +17,12 @@ import androidx.core.view.WindowInsetsCompat;
 public class LaunchActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private int points = 1;
+
     private CheckBox survivalKit;
     private CheckBox injury;
     private CheckBox reducedThirst;
     private CheckBox strongBack;
+    private CheckBox fragileHealth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,14 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
         survivalKit = findViewById(R.id.survival_kit);
         injury = findViewById(R.id.injury);
         reducedThirst = findViewById(R.id.reduced_thirst);
-        strongBack = findViewById(R.id.strongBack);
+        strongBack = findViewById(R.id.strong_back);
+        fragileHealth = findViewById(R.id.fragile_health);
 
         survivalKit.setOnCheckedChangeListener(this);
         injury.setOnCheckedChangeListener(this);
         reducedThirst.setOnCheckedChangeListener(this);
         strongBack.setOnCheckedChangeListener(this);
+        fragileHealth.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -56,6 +60,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtra("injury", injury.isChecked());
             intent.putExtra("reduced_thirst", reducedThirst.isChecked());
             intent.putExtra("strong_back", strongBack.isChecked());
+            intent.putExtra("fragile_health", fragileHealth.isChecked());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -69,7 +74,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
             } else {
                 points++;
             }
-        } else if (buttonView.getId() == R.id.strongBack) {
+        } else if (buttonView.getId() == R.id.strong_back) {
             if (isChecked) {
                 points--;
             } else {
@@ -86,6 +91,12 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
                 points++;
             } else {
                 points--;
+            }
+        } else if (buttonView.getId() == R.id.fragile_health) {
+            if (isChecked) {
+                points += 2;
+            } else {
+                points -= 2;
             }
         }
 

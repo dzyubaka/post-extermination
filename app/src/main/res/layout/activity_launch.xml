@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="1 points"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         android:layout_weight="1"
         android:columnCount="3">
 
@@ -39,7 +39,7 @@
             android:textSize="32sp" />
 
         <CheckBox
-            android:id="@+id/strongBack"
+            android:id="@+id/strong_back"
             android:layout_gravity="top" />
 
         <TextView
@@ -65,7 +65,7 @@
         <CheckBox android:layout_gravity="top" />
 
         <TextView
-            android:text="1"
+            android:text="-1"
             android:textSize="32sp" />
 
         <Space
@@ -81,7 +81,19 @@
             android:layout_gravity="top" />
 
         <TextView
-            android:text="1"
+            android:text="+1"
+            android:textSize="32sp" />
+
+        <TextView
+            android:text="Fragile Health"
+            android:textSize="32sp" />
+
+        <CheckBox
+            android:id="@+id/fragile_health"
+            android:layout_gravity="top" />
+
+        <TextView
+            android:text="+2"
             android:textSize="32sp" />
 
         <TextView
@@ -91,18 +103,7 @@
         <CheckBox android:layout_gravity="top" />
 
         <TextView
-            android:text="1"
-            android:textSize="32sp" />
-
-
-        <TextView
-            android:text="Trait"
-            android:textSize="32sp" />
-
-        <CheckBox android:layout_gravity="top" />
-
-        <TextView
-            android:text="1"
+            android:text="+1"
             android:textSize="32sp" />
 
         <TextView
@@ -112,7 +113,7 @@
         <CheckBox android:layout_gravity="top" />
 
         <TextView
-            android:text="1"
+            android:text="+1"
             android:textSize="32sp" />
 
     </GridLayout>
