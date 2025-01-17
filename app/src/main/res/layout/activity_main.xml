@@ -20,13 +20,14 @@
                 android:text="Sanity"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/sanity"
+            <ProgressBar
+                android:id="@+id/bar_sanity"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/aqua"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/aqua"
                 tools:progress="50" />
 
         </TableRow>
@@ -39,13 +40,14 @@
                 android:text="Hunger"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/hunger"
+            <ProgressBar
+                android:id="@+id/bar_hunger"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/orange"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/orange"
                 tools:progress="50" />
 
         </TableRow>
@@ -58,13 +60,14 @@
                 android:text="Thirst"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/thirst"
+            <ProgressBar
+                android:id="@+id/bar_thirst"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/blue"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/blue"
                 tools:progress="50" />
 
         </TableRow>
@@ -77,13 +80,14 @@
                 android:text="Energy"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/energy"
+            <ProgressBar
+                android:id="@+id/bar_energy"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/yellow"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/yellow"
                 tools:progress="50" />
 
         </TableRow>
@@ -96,13 +100,14 @@
                 android:text="Toxins"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/toxins"
+            <ProgressBar
+                android:id="@+id/bar_toxins"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/green"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/green"
                 tools:progress="50" />
 
         </TableRow>
@@ -115,13 +120,14 @@
                 android:text="Pain"
                 android:textStyle="bold" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/pain"
+            <ProgressBar
+                android:id="@+id/bar_pain"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:indicatorColor="@color/maroon"
-                app:trackThickness="19dp"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressTint="@color/maroon"
                 tools:progress="50" />
 
         </TableRow>

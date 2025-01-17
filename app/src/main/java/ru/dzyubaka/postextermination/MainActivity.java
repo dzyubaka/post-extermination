@@ -2,6 +2,7 @@ package ru.dzyubaka.postextermination;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Map;
 
@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private final Player player = new Player();
     private final Tile[][] tiles = new Tile[SIZE][SIZE];
 
-    private LinearProgressIndicator sanityIndicator;
-    private LinearProgressIndicator hungerIndicator;
-    private LinearProgressIndicator thirstIndicator;
-    private LinearProgressIndicator energyIndicator;
-    private LinearProgressIndicator toxinsIndicator;
-    private LinearProgressIndicator painIndicator;
+    private ProgressBar sanityBar;
+    private ProgressBar hungerBar;
+    private ProgressBar thirstBar;
+    private ProgressBar energyBar;
+    private ProgressBar toxinsBar;
+    private ProgressBar painBar;
 
     private float injuryMultiplier = 1;
 
@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
             player.toxinsMultiplier = 2;
         }
 
-        sanityIndicator = findViewById(R.id.sanity);
-        hungerIndicator = findViewById(R.id.hunger);
-        thirstIndicator = findViewById(R.id.thirst);
-        energyIndicator = findViewById(R.id.energy);
-        toxinsIndicator = findViewById(R.id.toxins);
-        painIndicator = findViewById(R.id.pain);
+        sanityBar = findViewById(R.id.bar_sanity);
+        hungerBar = findViewById(R.id.bar_hunger);
+        thirstBar = findViewById(R.id.bar_thirst);
+        energyBar = findViewById(R.id.bar_energy);
+        toxinsBar = findViewById(R.id.bar_toxins);
+        painBar = findViewById(R.id.bar_pain);
 
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
@@ -244,12 +244,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateIndicators() {
-        sanityIndicator.setProgress(player.getSanity());
-        hungerIndicator.setProgress(player.getHunger());
-        thirstIndicator.setProgress(player.getThirst());
-        energyIndicator.setProgress(player.getEnergy());
-        toxinsIndicator.setProgress(player.getToxins());
-        painIndicator.setProgress(player.getPain());
+        sanityBar.setProgress(player.getSanity());
+        hungerBar.setProgress(player.getHunger());
+        thirstBar.setProgress(player.getThirst());
+        energyBar.setProgress(player.getEnergy());
+        toxinsBar.setProgress(player.getToxins());
+        painBar.setProgress(player.getPain());
 
         if (player.getSanity() == 0) {
             new AlertDialog.Builder(this)

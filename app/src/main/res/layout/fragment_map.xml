@@ -5,14 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".fragment.MapFragment">
 
     <GridLayout
         android:id="@+id/grid_layout"
-        android:background="@color/dark_khaki"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/dark_khaki"
         android:columnCount="7"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent" />
