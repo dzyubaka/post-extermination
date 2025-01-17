@@ -4,12 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -49,15 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         Bundle extras = getIntent().getExtras();
 
         if (extras.getBoolean("survival_kit")) {
@@ -227,10 +215,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
+                .add(R.id.frame_layout, new InventoryFragment(player, tiles[player.position.y][player.position.x]))
                 .commit();
 
-        ((BottomNavigationView) findViewById(R.id.navigation)).setOnItemSelectedListener(item -> {
+        ((BottomNavigationView) findViewById(R.id.navigation)).setOnNavigationItemSelectedListener(item -> {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             int id = item.getItemId();
             Fragment fragment = null;
@@ -247,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new HealthFragment(player);
             }
 
-            transaction.replace(R.id.container, fragment);
+            transaction.replace(R.id.frame_layout, fragment);
             transaction.commit();
             return true;
         });

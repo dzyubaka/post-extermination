@@ -8,7 +8,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,19 +24,12 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
     private CheckBox fragileHealth;
     private CheckBox strongHealth;
     private CheckBox weakStomach;
-    private CheckBox badFigher;
+    private CheckBox badFighter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_launch);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         findViewById(R.id.continue_button).setOnClickListener(this);
 
         survivalKit = findViewById(R.id.survival_kit);
@@ -47,7 +39,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
         fragileHealth = findViewById(R.id.fragile_health);
         strongHealth = findViewById(R.id.strong_health);
         weakStomach = findViewById(R.id.weak_stomach);
-        badFigher = findViewById(R.id.bad_fighter);
+        badFighter = findViewById(R.id.bad_fighter);
 
         survivalKit.setOnCheckedChangeListener(this);
         injury.setOnCheckedChangeListener(this);
@@ -56,7 +48,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
         fragileHealth.setOnCheckedChangeListener(this);
         strongHealth.setOnCheckedChangeListener(this);
         weakStomach.setOnCheckedChangeListener(this);
-        badFigher.setOnCheckedChangeListener(this);
+        badFighter.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -72,7 +64,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtra("fragile_health", fragileHealth.isChecked());
             intent.putExtra("strong_health", strongHealth.isChecked());
             intent.putExtra("weak_stomach", weakStomach.isChecked());
-            intent.putExtra("bad_fighter", badFigher.isChecked());
+            intent.putExtra("bad_fighter", badFighter.isChecked());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
