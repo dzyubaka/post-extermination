@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Map;
 
-import ru.dzyubaka.postextermination.fragment.AreaFragment;
+import ru.dzyubaka.postextermination.fragment.PlaceFragment;
 import ru.dzyubaka.postextermination.fragment.CraftFragment;
 import ru.dzyubaka.postextermination.fragment.HealthFragment;
 import ru.dzyubaka.postextermination.fragment.InventoryFragment;
@@ -229,8 +229,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new MapFragment(player, tiles);
             } else if (id == R.id.craft) {
                 fragment = new CraftFragment(player, tiles[player.position.y][player.position.x]);
-            } else if (id == R.id.area) {
-                fragment = new AreaFragment(player, tiles[player.position.y][player.position.x]);
+            } else if (id == R.id.place) {
+                fragment = new PlaceFragment(player, tiles[player.position.y][player.position.x]);
             } else if (id == R.id.health) {
                 fragment = new HealthFragment(player);
             }

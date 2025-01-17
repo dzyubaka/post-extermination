@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".fragment.AreaFragment">
+    tools:context=".fragment.PlaceFragment">
 
     <TextView
         android:id="@+id/name"

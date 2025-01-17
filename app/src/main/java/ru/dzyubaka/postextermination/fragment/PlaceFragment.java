@@ -25,21 +25,21 @@ import ru.dzyubaka.postextermination.R;
 import ru.dzyubaka.postextermination.model.Tile;
 import ru.dzyubaka.postextermination.Utils;
 
-public class AreaFragment extends Fragment {
+public class PlaceFragment extends Fragment {
 
     private final Player player;
     private final Tile tile;
     private ItemAdapter adapter;
     private TextView searchesLeft;
 
-    public AreaFragment(Player player, Tile tile) {
+    public PlaceFragment(Player player, Tile tile) {
         this.player = player;
         this.tile = tile;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_area, container, false);
+        View view = inflater.inflate(R.layout.fragment_place, container, false);
         ((TextView) view.findViewById(R.id.name)).setText(tile.getName());
         searchesLeft = view.findViewById(R.id.searchesLeft);
         searchesLeft.setText(tile.searchesLeft + " searches left");

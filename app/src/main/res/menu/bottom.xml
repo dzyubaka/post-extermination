@@ -17,9 +17,9 @@
         android:title="Craft" />
 
     <item
-        android:id="@+id/area"
+        android:id="@+id/place"
         android:icon="@drawable/baseline_person_pin_circle_24"
-        android:title="Area" />
+        android:title="Place" />
 
     <item
         android:id="@+id/health"
