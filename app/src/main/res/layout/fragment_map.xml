@@ -41,6 +41,7 @@
 
             <Button
                 android:id="@+id/up"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_margin="4dp"
                 android:text="Up" />
 
@@ -48,20 +49,25 @@
 
         </TableRow>
 
-        <TableRow android:gravity="center">
+        <TableRow
+            style="?android:attr/buttonBarStyle"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/left"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_margin="4dp"
                 android:text="Left" />
 
             <Button
                 android:id="@+id/sleep"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_margin="4dp"
                 android:text="Sleep" />
 
             <Button
                 android:id="@+id/right"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_margin="4dp"
                 android:text="Right" />
 
@@ -73,6 +79,7 @@
 
             <Button
                 android:id="@+id/down"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_margin="4dp"
                 android:text="Down" />
 

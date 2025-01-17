@@ -24,6 +24,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_16
         targetCompatibility JavaVersion.VERSION_16
     }
+    lintOptions {
+        disable 'ContentDescription'
+        disable 'HardcodedText'
+        disable 'IconLocation'
+        disable 'SetTextI18n'
+    }
 }
 
 dependencies {

@@ -39,7 +39,7 @@ public class MapFragment extends Fragment {
                 ImageView imageView = new ImageView(container.getContext());
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.width = 0;
-                params.height = params.width;
+                params.height = 0;
                 params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
                 params.rowSpec = params.columnSpec;
                 imageView.setLayoutParams(params);
