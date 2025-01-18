@@ -46,37 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle extras = getIntent().getExtras();
-
-        if (extras.getBoolean("survival_kit")) {
-            player.inventory.add(Item.create(ItemType.MULTITOOL));
-            player.inventory.add(Item.create(ItemType.MATCHES));
-        }
-
-        if (extras.getBoolean("injury")) {
-            Integer[] keys = player.fractures.keySet().toArray(new Integer[0]);
-            player.fractures.put(keys[Utils.random(keys.length)], true);
-        }
-
-        if (extras.getBoolean("reduced_thirst")) {
-            player.thirstPerAction--;
-        }
-
-        if (extras.getBoolean("strong_back")) {
-            player.maxWeight += 2000;
-        }
-
-        if (extras.getBoolean("fragile_health")) {
-            injuryMultiplier *= 2;
-        }
-
-        if (extras.getBoolean("strong_health")) {
-            injuryMultiplier /= 2;
-        }
-
-        if (extras.getBoolean("weak_stomach")) {
-            player.toxinsMultiplier = 2;
-        }
+        applyTraits();
 
         sanityBar = findViewById(R.id.bar_sanity);
         hungerBar = findViewById(R.id.bar_hunger);
@@ -241,6 +211,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         updateIndicators();
+    }
+
+    private void applyTraits() {
+        Bundle extras = getIntent().getExtras();
+
+        if (extras.getBoolean("Survival Kit")) {
+            player.inventory.add(Item.create(ItemType.MULTITOOL));
+            player.inventory.add(Item.create(ItemType.MATCHES));
+        }
+
+        if (extras.getBoolean("Injury")) {
+            Integer[] keys = player.fractures.keySet().toArray(new Integer[0]);
+            player.fractures.put(keys[Utils.random(keys.length)], true);
+        }
+
+        if (extras.getBoolean("Reduced Thirst")) {
+            player.thirstPerAction--;
+        }
+
+        if (extras.getBoolean("Strong Back")) {
+            player.maxWeight += 2000;
+        }
+
+        if (extras.getBoolean("Fragile Health")) {
+            injuryMultiplier *= 2;
+        }
+
+        if (extras.getBoolean("Strong Health")) {
+            injuryMultiplier /= 2;
+        }
+
+        if (extras.getBoolean("Weak Stomach")) {
+            player.toxinsMultiplier = 2;
+        }
     }
 
     public void updateIndicators() {

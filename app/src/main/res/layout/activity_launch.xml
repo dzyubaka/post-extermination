@@ -14,114 +14,12 @@
         android:text="1 points"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2" />
 
-    <GridLayout
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
         android:layout_weight="1"
-        android:columnCount="3">
-
-        <TextView
-            android:text="Survival Kit"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/survival_kit"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="-1"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Strong Back"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/strong_back"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="-1"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Reduced Thirst"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/reduced_thirst"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="-2"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Strong Health"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/strong_health"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="-3"
-            android:textSize="32sp" />
-
-        <Space
-            android:layout_columnSpan="3"
-            android:layout_margin="32dp" />
-
-        <TextView
-            android:text="Injury"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/injury"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="+1"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Fragile Health"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/fragile_health"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="+2"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Weak Stomach"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/weak_stomach"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="+1"
-            android:textSize="32sp" />
-
-        <TextView
-            android:text="Bad Fighter"
-            android:textSize="32sp" />
-
-        <CheckBox
-            android:id="@+id/bad_fighter"
-            android:layout_gravity="top" />
-
-        <TextView
-            android:text="+2"
-            android:textSize="32sp" />
-
-    </GridLayout>
+        android:choiceMode="multipleChoice" />
 
     <Button
         android:id="@+id/continue_button"
